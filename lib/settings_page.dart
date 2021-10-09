@@ -1,6 +1,5 @@
+import 'package:away/settings_scaffold.dart';
 import 'package:flutter/material.dart';
-
-import 'menu_Scaffold.dart';
 
 class SettingsPage extends StatelessWidget {
   const SettingsPage({Key? key, required this.title}) : super(key: key);
@@ -9,6 +8,6 @@ class SettingsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return mainScaffold(title,context);
+    return settingScaffold(title,context);
   }
 }

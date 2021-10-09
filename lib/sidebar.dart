@@ -1,12 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'locations_page.dart';
-import 'menu_page.dart';
-import 'settings_page.dart';
 
 Drawer createSidebar(BuildContext context)
 {
-  final seiten = ["Startseite", "Meine Standorte", "Einstellungen"];
+  final seiten = {"Startseite":"/", "Meine Standorte":"/locations", "Einstellungen":"/settings"};
  return Drawer(
    //ListView
     child: ListView(
@@ -17,12 +14,10 @@ Drawer createSidebar(BuildContext context)
 }
 
 
-List<Widget> populateBody(BuildContext context, final List<String> titel) {
+List<Widget> populateBody(BuildContext context, final Map<String, String> map) {
   List<Widget> elemente = [];
   elemente.add(createHeader(context));
-  for (final text in titel) {
-    elemente.add(createTile(text, context));
-  }
+  map.forEach((key,val)=> elemente.add(createTile(key, context, val)));
   return elemente;
 }
 
@@ -33,17 +28,9 @@ Widget createHeader(BuildContext context)=> const DrawerHeader(
       child: Text('Menü'),
     );
 
-Widget createTile(final String inhalt, BuildContext context) => ListTile(
+Widget createTile(final String key, BuildContext context, final value) => ListTile(
     onTap: () {
-      Navigator.pushNamed(context, doRouting(inhalt, context));
+      Navigator.pushNamed(context, value);
     },
-    title: Text(inhalt),
+    title: Text(key),
   );
-
-
-String doRouting(final inhalt, BuildContext context)
-{
-  if (inhalt =="Menü") {return "/";}
-  else if (inhalt =="Einstellungen") {return "/settings";}
-  else  {return "/locations";}
-}
