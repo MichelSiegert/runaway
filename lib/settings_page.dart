@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 
 import 'menu_Scaffold.dart';
 
-class MySettings extends StatelessWidget {
-  const MySettings({Key? key, required this.title}) : super(key: key);
+class SettingsPage extends StatelessWidget {
+  const SettingsPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 

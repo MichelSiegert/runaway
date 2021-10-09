@@ -35,15 +35,15 @@ Widget createHeader(BuildContext context)=> const DrawerHeader(
 
 Widget createTile(final String inhalt, BuildContext context) => ListTile(
     onTap: () {
-      Navigator.push(context, doRouting(inhalt, context));
+      Navigator.pushNamed(context, doRouting(inhalt, context));
     },
     title: Text(inhalt),
   );
 
 
-MaterialPageRoute doRouting(final inhalt, BuildContext context)
+String doRouting(final inhalt, BuildContext context)
 {
-  if (inhalt =="Menü") {return MaterialPageRoute(builder:(_) => const MyHomePage(title: "Runaway"));}
-  else if (inhalt =="Einstellungen") {return MaterialPageRoute(builder:(_) => const MySettings(title: "Runaway"));}
-  else  {return MaterialPageRoute(builder:(_) => const Locations(title: "Runaway"));}
+  if (inhalt =="Menü") {return "/";}
+  else if (inhalt =="Einstellungen") {return "/settings";}
+  else  {return "/locations";}
 }
