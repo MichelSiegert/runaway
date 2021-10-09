@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 
+import 'locations_page.dart';
+import 'menu_page.dart';
+import 'settings_page.dart';
+
 Drawer createSidebar(BuildContext context)
 {
   final seiten = ["Startseite", "Meine Standorte", "Einstellungen"];
@@ -31,7 +35,15 @@ Widget createHeader(BuildContext context)=> const DrawerHeader(
 
 Widget createTile(final String inhalt, BuildContext context) => ListTile(
     onTap: () {
-      Navigator.pop(context);
+      Navigator.push(context, doRouting(inhalt, context));
     },
     title: Text(inhalt),
   );
+
+
+MaterialPageRoute doRouting(final inhalt, BuildContext context)
+{
+  if (inhalt =="Menü") {return MaterialPageRoute(builder:(_) => const MyHomePage(title: "Runaway"));}
+  else if (inhalt =="Einstellungen") {return MaterialPageRoute(builder:(_) => const MySettings(title: "Runaway"));}
+  else  {return MaterialPageRoute(builder:(_) => const Locations(title: "Runaway"));}
+}
