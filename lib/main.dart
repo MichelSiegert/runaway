@@ -22,7 +22,6 @@ class MyHomePage extends StatelessWidget {
   final String title;
 
   @override
-  //Green upper bar with menu
   Widget build(BuildContext context) {
     return mainScaffold(title,context);
   }

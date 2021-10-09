@@ -1,9 +1,8 @@
 import 'package:away/sidebar.dart';
 import 'package:flutter/material.dart';
 
-Scaffold mainScaffold( final String title, BuildContext context)
-{
-  return Scaffold(
+//
+Scaffold mainScaffold( final String title, BuildContext context) => Scaffold(
     appBar: AppBar(
       title: Text(title),
       backgroundColor: Colors.green,
@@ -15,4 +14,3 @@ Scaffold mainScaffold( final String title, BuildContext context)
     //Menu Sidebar
     drawer: createSidebar(context),
   );
-}
