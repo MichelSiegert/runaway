@@ -1,6 +1,13 @@
+import 'package:away/settings_page.dart';
 import 'package:flutter/material.dart';
 
-void main() => runApp(const MyApp());
+import 'locations_page.dart';
+import 'menu_page.dart';
+
+void main() => runApp(MaterialApp(routes:{
+  '/':(context) => const MyHomePage(title: 'Runaway'),
+'/settings':(context) => const SettingsPage(title: "Runaway"),
+'/locations':(context) => const LocationsPage(title: "Runaway")}));
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -14,56 +21,4 @@ class MyApp extends StatelessWidget {
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
-  final String title;
-
-  @override
-  //Green upper bar with menu
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-          title: Text(title),
-          backgroundColor: Colors.green,
-      ),
-      //Text in the middle of the page
-      body: const Center(
-        child: Text('Regenradar hinzufügen'),
-      ),
-      //Menu Sidebar
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: [
-            const DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ),
-              child: Text('Menü'),
-            ),
-            //List of the menu without continuation to other pages
-            ListTile(
-              title: const Text('Startseite'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Meine Standorte'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              title: const Text('Einstellungen'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-          ],
-        ),
-      ),
-    );
-  }
-}
