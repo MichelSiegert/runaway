@@ -1,4 +1,4 @@
-import 'package:away/settings_scaffold.dart';
+import 'settings_scaffold.dart';
 import 'package:flutter/material.dart';
 
 class SettingsPage extends StatelessWidget {

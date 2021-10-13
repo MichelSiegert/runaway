@@ -1,4 +1,4 @@
-import 'package:away/sidebar.dart';
+import '../../Widget/sidebar.dart';
 import 'package:flutter/material.dart';
 
 //
