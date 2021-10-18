@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Drawer createSidebar(BuildContext context)
 {
-  final seiten = {"Startseite":"/", "Meine Standorte":"/locations", "Einstellungen":"/settings"};
+  final seiten = {"Startseite":"/menu", "Meine Standorte":"/locations", "Einstellungen":"/settings", "Login":"/"};
  return Drawer(
    //ListView
     child: ListView(
