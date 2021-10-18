@@ -9,6 +9,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return loginScaffold(title,context);
+    return loginScaffold(title, context);
   }
 }

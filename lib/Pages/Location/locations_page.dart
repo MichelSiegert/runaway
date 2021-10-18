@@ -9,6 +9,6 @@ class LocationsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return locationScaffold(title,context);
+    return locationScaffold(title, context);
   }
 }
