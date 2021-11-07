@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "663017105403",
+    "project_id": "runaway-rain",
+    "storage_bucket": "runaway-rain.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:663017105403:android:7446b5f113924532b24d5e",
+        "android_client_info": {
+          "package_name": "de.fh.kiel.away"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "663017105403-0slj0btj6g681netk9t6jihkpilfnu8a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAgTQ3kiUiE_elphNzSW1erisRdUIfLOzU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "663017105403-0slj0btj6g681netk9t6jihkpilfnu8a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

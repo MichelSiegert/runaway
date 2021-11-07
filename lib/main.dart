@@ -1,14 +1,16 @@
-import 'Pages/Settings/settings_page.dart';
 import 'package:flutter/material.dart';
 
 import 'Pages/Location/locations_page.dart';
+import 'Pages/Login/login_page.dart';
 import 'Pages/Menu/menu_page.dart';
+import 'Pages/Settings/settings_page.dart';
 
 void main() => runApp(MaterialApp(routes: {
-			'/': (context) => const MenuPage(title: 'Runaway'),
-			'/settings': (context) => const SettingsPage(title: "Runaway"),
-			'/locations': (context) => const LocationsPage(title: "Runaway"),
-		}));
+      '/menu': (context) => const MenuPage(title: 'Runaway'),
+      '/settings': (context) => const SettingsPage(title: "Runaway"),
+      '/locations': (context) => const LocationsPage(title: "Runaway"),
+      '/': (context) => const LoginPage(title: "Runaway")
+    }));
 
 class RunAway extends StatelessWidget {
 	const RunAway({Key? key}) : super(key: key);
