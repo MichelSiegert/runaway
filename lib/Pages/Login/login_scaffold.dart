@@ -1,31 +1,18 @@
-import '../../Widgets/sidebar.dart';
+import 'login_screen.dart';
 import 'package:flutter/material.dart';
 
-//
-Scaffold loginScaffold(final String title, BuildContext context) => Scaffold(
+
+Scaffold LoginScaffold(final String title, BuildContext context) => Scaffold(
       appBar: AppBar(
         title: Text(title),
         backgroundColor: Colors.green,
       ),
-      //Text in the middle of the page
-      body: Center(
-          child: SizedBox.expand(
-        child: ListView(children: populateListView(context)),
-      )),
-      //Menu Sidebar
-      drawer: createSidebar(context),
-    );
-
-List<ListTile> populateListView(BuildContext context) {
-  List<ListTile> elemente = [];
-  List<int> liste = [];
-  [for (int i = 0; i < 50; i++) liste.add(i)];
-  for (int zahl in liste) {
-    elemente.add(createTile(zahl, context));
-  }
-  return elemente;
-}
-
-ListTile createTile(final int inhalt, BuildContext context) => ListTile(
-      title: Text(inhalt.toString()),
+      body: SizedBox.expand(
+        child: Center(
+          child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: createLoginForm(context)),
+        ),
+      ),
     );
