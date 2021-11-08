@@ -9,6 +9,6 @@ class MenuPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return mainScaffold(title,context);
+    return menuScaffold(title, context);
   }
 }
