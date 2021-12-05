@@ -13,10 +13,9 @@ class LoginState extends State<LoginPage> {
     if (_error) {
       return Text("something went wrong!");
     } else if (_initialized) {
-      //TODO IMPLEMENT ROUTE
       return LoginScaffold("Runaway", context);
     } else {
-      return Text("Loading Runaway...");
+      return _loadRunaway();
     }
   }
 
@@ -39,4 +38,24 @@ class LoginState extends State<LoginPage> {
       });
     }
   }
+
+  Widget _loadRunaway() {
+    return SizedBox.expand(
+      child: Container(
+        alignment: Alignment.center,
+        color: Colors.white,
+        child: Column(children: const [
+          CircularProgressIndicator(
+            color: Colors.blue,
+            backgroundColor: Colors.grey,
+            strokeWidth: 3,
+          ),
+          Text("Loading Runaway...")
+        ]),
+      ),
+    );
+  }
 }
+
+//Rotate n degree every frame
+// increase n by dn;
