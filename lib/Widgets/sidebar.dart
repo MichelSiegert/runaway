@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 Drawer createSidebar(BuildContext context) {
@@ -17,8 +18,19 @@ Drawer createSidebar(BuildContext context) {
 
 List<Widget> populateBody(BuildContext context, final Map<String, String> map) {
   List<Widget> elemente = [];
+  FirebaseAuth auth = FirebaseAuth.instance;
+
   elemente.add(createHeader(context));
   map.forEach((key, val) => elemente.add(createTile(key, context, val)));
+  elemente.add(ListTile(
+    onTap: () async {
+      await auth.signOut();
+      Navigator.pushNamed(context,"/");
+    },
+    title: const Text("Logout"),
+    subtitle: const Text("to go back to login!"),
+  )
+  );
   return elemente;
 }
 
