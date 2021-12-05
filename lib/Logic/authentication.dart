@@ -18,11 +18,12 @@ class AuthService {
   }
 
 //TODO instead of print calls, use Widgets.
-  Future Login(final String email, final String password) async {
+  Future login(final String email, final String password) async {
+    UserCredential? user;
     try {
-      UserCredential user = await _auth.signInWithEmailAndPassword(
+       user = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      return user;
+
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
         print("no user with such an email!");
@@ -31,7 +32,7 @@ class AuthService {
       }
     }
     //TODO not null, this is not a good practice.
-    return null;
+    return user;
   }
 
 //TODO instead of printcalls use widgets.

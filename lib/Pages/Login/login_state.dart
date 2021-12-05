@@ -11,7 +11,7 @@ class LoginState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     if (_error) {
-      return Text("something went wrong!");
+      return const Text("something went wrong!");
     } else if (_initialized) {
       return LoginScaffold("Runaway", context);
     } else {
