@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "663017105403-04vophchsirqpe78218mfh2ra6rkbdfi.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.fh.kiel.away",
+            "certificate_hash": "092fee87d389ffe1041565dec8593245e2c49406"
+          }
+        },
+        {
           "client_id": "663017105403-0slj0btj6g681netk9t6jihkpilfnu8a.apps.googleusercontent.com",
           "client_type": 3
         }

@@ -1,5 +1,6 @@
 import 'package:away/Pages/Login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'login_scaffold.dart';
@@ -11,12 +12,11 @@ class LoginState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     if (_error) {
-      return Text("something went wrong!");
+      return const Text("something went wrong!");
     } else if (_initialized) {
-      //TODO IMPLEMENT ROUTE
       return LoginScaffold("Runaway", context);
     } else {
-      return Text("Loading Runaway...");
+      return _loadRunaway();
     }
   }
 
@@ -39,4 +39,35 @@ class LoginState extends State<LoginPage> {
       });
     }
   }
+
+  Widget _loadRunaway() {
+    return SizedBox.expand(
+      child: Container(
+        alignment: Alignment.center,
+        color: Colors.white,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+           mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
+          CircularProgressIndicator(
+            color: Colors.blue,
+            backgroundColor: Colors.grey,
+            strokeWidth: 5,
+
+          ),
+          Text(
+            "Loading Runaway...",
+            textAlign: TextAlign.center,
+            style:
+                TextStyle(color: Colors.black,
+                    fontSize: 20,
+                    decoration: TextDecoration.none),
+          )
+        ]),
+      ),
+    );
+  }
 }
+
+//Rotate n degree every frame
+// increase n by dn;
