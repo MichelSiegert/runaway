@@ -31,7 +31,7 @@ class RegisterPage extends StatelessWidget {
                   mail = text;
                 },
                 obscureText: false,
-                decoration: InputDecoration(
+                decoration: const InputDecoration(
                     border: OutlineInputBorder(), labelText: "Username"),
               ),
               Container(
@@ -39,14 +39,14 @@ class RegisterPage extends StatelessWidget {
                 child:  TextField(
                   onChanged: (text) {password = text;},
                   obscureText: true,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                       border: OutlineInputBorder(), labelText: "Passwort"),
                 ),
               ),
               TextButton(
-                  onPressed: () {
+                  onPressed: () async {
                     AuthService auth = AuthService();
-                    auth.Register(mail, password);
+                    await auth.Register(mail, password);
                     Navigator.pushNamed(context, "/");
                   },
                   child: const Text("Register"))

@@ -3,7 +3,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
 List<Widget> createLoginForm(BuildContext context) {
-  String email="", password="";
+  String email = "", password = "";
   AuthService _authent = AuthService();
   List<Widget> elements = [];
   elements.add(TextField(
@@ -12,14 +12,14 @@ List<Widget> createLoginForm(BuildContext context) {
     },
     obscureText: false,
     decoration:
-        InputDecoration(border: OutlineInputBorder(), labelText: "Username"),
+        const InputDecoration(border: OutlineInputBorder(), labelText: "Username"),
   ));
   elements.add(Container(
     padding: const EdgeInsets.all(10),
     child: TextField(
       obscureText: true,
       decoration:
-          InputDecoration(border: OutlineInputBorder(), labelText: "Passwort"),
+          const InputDecoration(border: OutlineInputBorder(), labelText: "Passwort"),
       onChanged: (text) {
         password = text;
       },
@@ -32,7 +32,7 @@ List<Widget> createLoginForm(BuildContext context) {
       child: TextButton(
         child: const Text("login"),
         onPressed: () async {
-          User? user = await _authent.login(email, password);
+          UserCredential? user = await _authent.login(email, password);
           if (user == null) {
             print("something went wrong!");
           } else {
@@ -59,13 +59,8 @@ List<Widget> createLoginForm(BuildContext context) {
       padding: const EdgeInsets.all(10),
       child: TextButton(
         child: const Text("No Account? Register here!"),
-        onPressed: () async {
-          User? user = await _authent.signInAnon();
-          if (user == null) {
-            print("something went wrong!");
-          } else {
-            Navigator.pushNamed(context, "/register");
-          }
+        onPressed: () {
+          Navigator.pushNamed(context, "/register");
         },
       ),
     ),
@@ -74,7 +69,7 @@ List<Widget> createLoginForm(BuildContext context) {
       child: TextButton(
         child: const Text("Sign in with Google!"),
         onPressed: () async {
-          User? user = await _authent.signInAnon();
+          UserCredential user = await _authent.signInWithGoogle();
           if (user == null) {
             print("something went wrong!");
           } else {

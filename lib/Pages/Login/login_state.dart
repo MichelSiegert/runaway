@@ -1,5 +1,6 @@
 import 'package:away/Pages/Login/login_page.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 import 'login_scaffold.dart';
@@ -44,13 +45,24 @@ class LoginState extends State<LoginPage> {
       child: Container(
         alignment: Alignment.center,
         color: Colors.white,
-        child: Column(children: const [
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+           mainAxisAlignment: MainAxisAlignment.center,
+            children: const [
           CircularProgressIndicator(
             color: Colors.blue,
             backgroundColor: Colors.grey,
-            strokeWidth: 3,
+            strokeWidth: 5,
+
           ),
-          Text("Loading Runaway...")
+          Text(
+            "Loading Runaway...",
+            textAlign: TextAlign.center,
+            style:
+                TextStyle(color: Colors.black,
+                    fontSize: 20,
+                    decoration: TextDecoration.none),
+          )
         ]),
       ),
     );
