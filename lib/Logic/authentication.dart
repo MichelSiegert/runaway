@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
   // TODO sign in anon
   //shoul work?
-  Future signInAnon() async {
+    Future signInAnon() async {
     try {
-      UserCredential result = await _auth.signInAnonymously();
+        UserCredential result = await _auth.signInAnonymously();
       User? user = result.user;
       return user;
     } catch (e) {
