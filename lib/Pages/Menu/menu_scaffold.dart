@@ -1,4 +1,5 @@
 import 'package:away/Logic/location.dart';
+import 'package:away/Logic/weather.dart';
 
 import '../../Widgets/sidebar.dart';
 import 'package:flutter/material.dart';
@@ -32,7 +33,7 @@ class _HomePageState extends State<HomePage> {
             children: <Widget>[
               if (_currentAddress != null) Text(_currentAddress!),
               TextButton(
-                child: const Text("Get location"),
+                child: const Text("Get location!"),
                 onPressed: () {
                   _getCurrentLocation();
                 },
@@ -47,7 +48,9 @@ class _HomePageState extends State<HomePage> {
   _getCurrentLocation() async {
     // TODO as soon branch MakeThingsLoad is done, give this a loading animation!
     _currentPosition = await getLongLat();
+    getWeatherByLongLat(_currentPosition!.latitude, _currentPosition!.longitude);
     Placemark? place = await getAddressFromLatLng(_currentPosition!);
+
     if (place != null) {
       setState(() {
         _currentAddress =
