@@ -7,6 +7,7 @@ Future loadingAnimation(BuildContext context) => showDialog(
             //TODO make this not hard coded!
             height: 100,
             child: Column(
+              // max = the height of the sizedbox in this case.
                 mainAxisSize: MainAxisSize.max,
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.center,
