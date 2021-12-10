@@ -13,15 +13,3 @@ void main() => runApp(MaterialApp(routes: {
       '/register': (context) => const RegisterPage(title: "Runaway"),
       '/': (context) => const LoginPage(title: "Runaway")
     }));
-
-class RunAway extends StatelessWidget {
-  const RunAway({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      title: 'Runaway',
-      home: MenuPage(title: 'Runaway'),
-    );
-  }
-}
