@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "663017105403",
+    "firebase_url": "https://runaway-rain-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "runaway-rain",
     "storage_bucket": "runaway-rain.appspot.com"
   },
@@ -14,7 +15,15 @@
       },
       "oauth_client": [
         {
-          "client_id": "663017105403-04vophchsirqpe78218mfh2ra6rkbdfi.apps.googleusercontent.com",
+          "client_id": "663017105403-g2hcfakl4cb96vcquedqeglcucfl5vjn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "de.fh.kiel.away",
+            "certificate_hash": "2e1034f5050179665c403edfc0883cf7e4e1455c"
+          }
+        },
+        {
+          "client_id": "663017105403-q67cc13u0uvts2gaov7coslga9ma391i.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "de.fh.kiel.away",

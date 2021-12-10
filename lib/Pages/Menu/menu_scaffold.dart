@@ -1,6 +1,8 @@
 import 'package:away/Logic/location.dart';
 import 'package:away/Logic/weather.dart';
 
+import 'package:away/Logic/database.dart';
+
 import '../../Widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -35,6 +37,7 @@ class _HomePageState extends State<HomePage> {
               TextButton(
                 child: const Text("Get location!"),
                 onPressed: () {
+                  fun();
                   _getCurrentLocation();
                 },
               )
