@@ -1,4 +1,5 @@
 import 'package:away/Logic/authentication.dart';
+import 'package:away/Widgets/Loading_Animation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -11,15 +12,15 @@ List<Widget> createLoginForm(BuildContext context) {
       email = text;
     },
     obscureText: false,
-    decoration:
-        const InputDecoration(border: OutlineInputBorder(), labelText: "Username"),
+    decoration: const InputDecoration(
+        border: OutlineInputBorder(), labelText: "Username"),
   ));
   elements.add(Container(
     padding: const EdgeInsets.all(10),
     child: TextField(
       obscureText: true,
-      decoration:
-          const InputDecoration(border: OutlineInputBorder(), labelText: "Passwort"),
+      decoration: const InputDecoration(
+          border: OutlineInputBorder(), labelText: "Passwort"),
       onChanged: (text) {
         password = text;
       },
@@ -32,7 +33,10 @@ List<Widget> createLoginForm(BuildContext context) {
       child: TextButton(
         child: const Text("login"),
         onPressed: () async {
+          loadingAnimation(context);
           UserCredential? user = await _authent.login(email, password);
+          Navigator.pop(context); //pop dialog
+
           if (user == null) {
             print("something went wrong!");
           } else {
@@ -46,7 +50,9 @@ List<Widget> createLoginForm(BuildContext context) {
       child: TextButton(
         child: const Text("login anonymously"),
         onPressed: () async {
+          loadingAnimation(context);
           User? user = await _authent.signInAnon();
+          Navigator.pop(context);
           if (user == null) {
             print("something went wrong!");
           } else {
@@ -69,7 +75,10 @@ List<Widget> createLoginForm(BuildContext context) {
       child: TextButton(
         child: const Text("Sign in with Google!"),
         onPressed: () async {
+          loadingAnimation(context);
           UserCredential user = await _authent.signInWithGoogle();
+          Navigator.pop(context);
+
           if (user == null) {
             print("something went wrong!");
           } else {

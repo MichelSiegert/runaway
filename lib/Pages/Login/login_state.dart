@@ -29,6 +29,7 @@ class LoginState extends State<LoginPage> {
   void initializeFlutterFire() async {
     try {
       await Firebase.initializeApp();
+      Future.delayed(const Duration(seconds: 3), () {});
       setState(() {
         _initialized = true;
       });
@@ -46,24 +47,23 @@ class LoginState extends State<LoginPage> {
         alignment: Alignment.center,
         color: Colors.white,
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-           mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
             children: const [
-          CircularProgressIndicator(
-            color: Colors.blue,
-            backgroundColor: Colors.grey,
-            strokeWidth: 5,
-
-          ),
-          Text(
-            "Loading Runaway...",
-            textAlign: TextAlign.center,
-            style:
-                TextStyle(color: Colors.black,
+              CircularProgressIndicator(
+                color: Colors.blue,
+                backgroundColor: Colors.grey,
+                strokeWidth: 5,
+              ),
+              Text(
+                "Loading Runaway...",
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    color: Colors.black,
                     fontSize: 20,
                     decoration: TextDecoration.none),
-          )
-        ]),
+              )
+            ]),
       ),
     );
   }
