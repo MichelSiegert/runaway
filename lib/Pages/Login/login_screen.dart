@@ -2,7 +2,7 @@ import 'package:away/Logic/authentication.dart';
 import 'package:away/Widgets/Loading_Animation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+//TODO make stateful response to failed login.
 List<Widget> createLoginForm(BuildContext context) {
   String email = "", password = "";
   final AuthService _authent = AuthService();
