@@ -19,15 +19,20 @@ class WeatherCard extends StatefulWidget {
 }
 
 class _WeatherCardState extends State<WeatherCard> {
-  late final bool isFavorite;
+  late bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: Icon(
-          Icons.favorite,
-          color: isFavorite ? Colors.pink : Colors.transparent,
-        ),
+        leading: isFavorite
+            ? const Icon(
+                Icons.favorite,
+                color: Colors.pink,
+              )
+            : const Icon(
+                Icons.favorite_border,
+                color: Colors.pink,
+              ),
         title: Text(widget.place),
         trailing: Text(widget.temp),
         onTap: () {
