@@ -32,7 +32,6 @@ Widget cancerParsing(Map<String, dynamic> json) {
       List<dynamic> wetterInformationen = value;
       for (var wetterInformation in wetterInformationen) {
         List<String> values = getValues(wetterInformation);
-        print(values.toString());
         weatherCards.add(
             WeatherCard(place: values[0], temp: values[1], weather: values[2]));
       }
@@ -59,7 +58,6 @@ List<String> getValues(Map<String, dynamic> weatherinfo) {
 String annoyingParsingOfTemperature(Map<String, dynamic> weatherinfo) {
   String temp = "";
   weatherinfo.forEach((key, value) {
-    print(key);
     if (key == "feels_like") {
       temp = value.toString();
     }
