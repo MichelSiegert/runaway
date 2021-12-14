@@ -1,0 +1,45 @@
+import 'dart:core';
+
+import 'package:flutter/material.dart';
+
+class WeatherCard extends StatefulWidget {
+  final String place;
+  final String temp;
+  final String weather;
+
+  const WeatherCard(
+      {Key? key,
+      required this.place,
+      required this.temp,
+      required this.weather})
+      : super(key: key);
+
+  @override
+  _WeatherCardState createState() => _WeatherCardState();
+}
+
+class _WeatherCardState extends State<WeatherCard> {
+  late final bool isFavorite;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+        leading: Icon(
+          Icons.favorite,
+          color: isFavorite ? Colors.pink : Colors.transparent,
+        ),
+        title: Text(widget.place),
+        trailing: Text(widget.temp),
+        onTap: () {
+          setState(() {
+            isFavorite = !isFavorite;
+          });
+        });
+  }
+
+  @override
+  void initState() {
+    isFavorite = false;
+    super.initState();
+  }
+}
