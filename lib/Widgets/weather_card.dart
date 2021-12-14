@@ -2,6 +2,7 @@ import 'dart:core';
 
 import 'package:flutter/material.dart';
 
+// TODO lade tatsächliche informationen
 class WeatherCard extends StatefulWidget {
   final String place;
   final String temp;

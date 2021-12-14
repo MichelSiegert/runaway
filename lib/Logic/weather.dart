@@ -12,7 +12,7 @@ Future<Weather> getWeatherByLongLat(double lat, double lon) async
   final Weather weather = await wf.currentWeatherByLocation(lat, lon);
   return weather;
 }
-
+//TODO parse die informationen sinnvoll aus dem Json
 getWeatherInArea(final double lat, final double lon) async {
   final int num = MenuPage.numEntries;
   final url = Uri.parse(
