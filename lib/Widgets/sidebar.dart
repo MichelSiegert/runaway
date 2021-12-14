@@ -17,8 +17,8 @@ Drawer createSidebar(BuildContext context) {
 }
 
 List<Widget> populateBody(BuildContext context, final Map<String, String> map) {
-  List<Widget> elemente = [];
-  FirebaseAuth auth = FirebaseAuth.instance;
+  final List<Widget> elemente = [];
+  final FirebaseAuth auth = FirebaseAuth.instance;
 
   elemente.add(createHeader(context));
   map.forEach((key, val) => elemente.add(createTile(key, context, val)));

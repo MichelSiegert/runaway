@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 
 List<Widget> createLoginForm(BuildContext context) {
   String email = "", password = "";
-  AuthService _authent = AuthService();
-  List<Widget> elements = [];
+  final AuthService _authent = AuthService();
+  final List<Widget> elements = [];
   elements.add(TextField(
     onChanged: (text) {
       email = text;
@@ -75,15 +75,15 @@ List<Widget> createLoginForm(BuildContext context) {
       child: TextButton(
         child: const Text("Sign in with Google!"),
         onPressed: () async {
+          _authent.signInWithGoogle().then((user) {
+            if (user == null)
+              print("something went wrong!");
+            else {
+              Navigator.pop(context);
+              Navigator.pushNamed(context, "/menu");
+            }
+          });
           loadingAnimation(context);
-          UserCredential user = await _authent.signInWithGoogle();
-          Navigator.pop(context);
-
-          if (user == null) {
-            print("something went wrong!");
-          } else {
-            Navigator.pushNamed(context, "/menu");
-          }
         },
       ),
     ),

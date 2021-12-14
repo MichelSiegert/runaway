@@ -8,10 +8,10 @@ Future<Position> getLongLat() async => await Geolocator.getCurrentPosition(
 
 Future<Placemark?> getAddressFromLatLng(Position pos) async {
   try {
-    List<Placemark> placemarks =
+    final List<Placemark> placemarks =
     await placemarkFromCoordinates(pos.latitude, pos.longitude);
 
-    Placemark place = placemarks[0];
+    final Placemark place = placemarks[0];
     return place;
   } catch (e) {
     print(e);
