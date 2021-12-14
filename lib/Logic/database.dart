@@ -7,8 +7,5 @@ writeToDatabase() async {
   final User? us = auth.currentUser;
   final String uid = us!.uid;
   final DatabaseReference reference = database.child("/users/$uid");
-  reference
-      .set({"does this work": "maybe", "will we see that?": "yes!"})
-      .then((value) => print("nice"))
-      .catchError((value) => print("ohno"));
+  reference.set({"does this work": "maybe", "will we see that?": "yes!"});
 }
