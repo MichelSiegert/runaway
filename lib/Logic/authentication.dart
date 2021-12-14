@@ -1,13 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
-
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-  // TODO sign in anon
-  //shoul work?
-    Future signInAnon() async {
+  Future signInAnon() async {
     try {
       final UserCredential result = await _auth.signInAnonymously();
       final User? user = result.user;
@@ -18,39 +15,34 @@ class AuthService {
     }
   }
 
-//TODO instead of print calls, use Widgets.
   Future login(final String email, final String password) async {
-    final UserCredential? user;
     try {
       return await _auth.signInWithEmailAndPassword(
           email: email, password: password);
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
-        print("no user with such an email!");
+        return "No user with such an email!";
       } else if (e.code == "wrong-password") {
-        print("Wrong password!");
+        return "Wrong password!";
       }
     }
-    //TODO not null, this is not a good practice.
     return null;
   }
 
-//TODO instead of printcalls use widgets.
   Future Register(final String email, final String password) async {
     try {
-      final UserCredential userCred = await _auth.createUserWithEmailAndPassword(
-          email: email, password: password);
+      final UserCredential userCred = await _auth
+          .createUserWithEmailAndPassword(email: email, password: password);
       return userCred;
     } on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('the password is too weak');
+        return 'the password is too weak';
       } else if (e.code == 'email-already-in-use') {
-        print('the account already exists for that email!');
+        return 'the account already exists for that email!';
       }
     } catch (e) {
       print(e);
     }
-    //TODO NULL is bad practice.
     return null;
   }
 
@@ -58,7 +50,6 @@ class AuthService {
     return await FirebaseAuth.instance.signOut();
   }
 
-//TODO GOOGLE AUTHENTICATOR
   Future signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
