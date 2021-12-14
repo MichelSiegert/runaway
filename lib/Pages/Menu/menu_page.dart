@@ -5,6 +5,7 @@ import 'menu_scaffold.dart';
 class MenuPage extends StatelessWidget {
   const MenuPage({Key? key, required this.title}) : super(key: key);
 
+  static const int numEntries = 1;
   final String title;
 
   @override
