@@ -1,9 +1,8 @@
+import 'package:away/Pages/Login/login_scaffold.dart';
 import 'package:flutter/material.dart';
 
-import 'login_scaffold.dart';
-import 'login_state.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
 
   const LoginPage({Key? key, required this.title}) : super(key: key);
 
@@ -11,10 +10,6 @@ class LoginPage extends StatefulWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LoginScaffold(title, context);
+    return buildLogin(context);
   }
-
-  @override
-  State<StatefulWidget> createState() => LoginState();
-
 }

@@ -9,8 +9,8 @@ class AuthService {
   //shoul work?
     Future signInAnon() async {
     try {
-        UserCredential result = await _auth.signInAnonymously();
-      User? user = result.user;
+      final UserCredential result = await _auth.signInAnonymously();
+      final User? user = result.user;
       return user;
     } catch (e) {
       print(e.toString());
@@ -20,11 +20,10 @@ class AuthService {
 
 //TODO instead of print calls, use Widgets.
   Future login(final String email, final String password) async {
-    UserCredential? user;
+    final UserCredential? user;
     try {
-       user = await _auth.signInWithEmailAndPassword(
+      return await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
         print("no user with such an email!");
@@ -33,13 +32,13 @@ class AuthService {
       }
     }
     //TODO not null, this is not a good practice.
-    return user;
+    return null;
   }
 
 //TODO instead of printcalls use widgets.
   Future Register(final String email, final String password) async {
     try {
-      UserCredential userCred = await _auth.createUserWithEmailAndPassword(
+      final UserCredential userCred = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
       return userCred;
     } on FirebaseAuthException catch (e) {
