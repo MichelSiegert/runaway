@@ -2,6 +2,7 @@ import 'package:away/Logic/location.dart';
 import 'package:away/Logic/weather.dart';
 
 import 'package:away/Logic/database.dart';
+import 'package:away/Widgets/loading_animation.dart';
 
 import '../../Widgets/sidebar.dart';
 import 'package:flutter/material.dart';
@@ -49,11 +50,12 @@ class _HomePageState extends State<HomePage> {
       );
 
   _getCurrentLocation() async {
-    // TODO as soon branch MakeThingsLoad is done, give this a loading animation!
+    loadingAnimation(context);
     _currentPosition = await getLongLat();
-    getWeatherByLongLat(_currentPosition!.latitude, _currentPosition!.longitude);
+    getWeatherByLongLat(
+        _currentPosition!.latitude, _currentPosition!.longitude);
     Placemark? place = await getAddressFromLatLng(_currentPosition!);
-
+    Navigator.pop(context);
     if (place != null) {
       setState(() {
         _currentAddress =
