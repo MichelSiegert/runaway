@@ -13,18 +13,16 @@ Future<Weather> getWeatherByLongLat(double lat, double lon) async {
   return weather;
 }
 
-//TODO parse die informationen sinnvoll aus dem Json
 getWeatherInArea(final double lat, final double lon) async {
   final int num = MenuPage.numEntries;
   final url = Uri.parse(
       "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&lang=de&units=metric");
   final result = await http.post(url);
   final Map<String, dynamic> parsed = jsonDecode(result.body);
-  return cancerParsing(parsed);
+  return parseAllData(parsed);
 }
 
-// FUCK THIS FOR REAL!
-Widget cancerParsing(Map<String, dynamic> json) {
+Widget parseAllData(Map<String, dynamic> json) {
   List<Widget> weatherCards = [];
   json.forEach((key, value) {
     // get all entries.
@@ -47,15 +45,15 @@ List<String> getValues(Map<String, dynamic> weatherinfo) {
     if (key == "name") {
       ausgaben.add(value);
     } else if (key == "main") {
-      ausgaben.add(annoyingParsingOfTemperature(value));
+      ausgaben.add(getTempFromJSON(value));
     } else if (key == "weather") {
-      ausgaben.add(annoyingParsingForWeather(value));
+      ausgaben.add(getWeatherFromJSON(value));
     }
   });
   return ausgaben;
 }
 
-String annoyingParsingOfTemperature(Map<String, dynamic> weatherinfo) {
+String getTempFromJSON(Map<String, dynamic> weatherinfo) {
   String temp = "";
   weatherinfo.forEach((key, value) {
     if (key == "feels_like") {
@@ -65,7 +63,7 @@ String annoyingParsingOfTemperature(Map<String, dynamic> weatherinfo) {
   return temp;
 }
 
-String annoyingParsingForWeather(List<dynamic> weatherinfo) {
+String getWeatherFromJSON(List<dynamic> weatherinfo) {
   String weather = "";
   for (var value in weatherinfo) {
     Map<String, dynamic> isClouded = value;
