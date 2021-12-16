@@ -18,11 +18,11 @@ getWeatherInArea(final double lat, final double lon) async {
   final url = Uri.parse(
       "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&lang=de&units=metric");
   final result = await http.post(url);
-  final Map<String, dynamic> parsed = jsonDecode(result.body);
-  return parseAllData(parsed);
+  final Map<String, dynamic> allData = jsonDecode(result.body);
+  return parse(allData);
 }
 
-Widget parseAllData(Map<String, dynamic> json) {
+Widget parse(Map<String, dynamic> json) {
   List<Widget> weatherCards = [];
   json.forEach((key, value) {
     // get all entries.
