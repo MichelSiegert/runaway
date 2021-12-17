@@ -1,8 +1,8 @@
 import 'dart:core';
 
+import 'package:away/Logic/database.dart';
 import 'package:flutter/material.dart';
 
-// TODO lade tatsächliche informationen
 class WeatherCard extends StatefulWidget {
   final String place;
   final String temp;
@@ -25,18 +25,28 @@ class _WeatherCardState extends State<WeatherCard> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
-        leading: isFavorite
-            ? const Icon(
-                Icons.favorite,
-                color: Colors.pink,
-              )
-            : const Icon(
-                Icons.favorite_border,
-                color: Colors.pink,
-              ),
+        leading: FutureBuilder(
+          future: isThisPlaceAFavoriteOfUser(widget.place),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              bool res = snapshot.data as bool;
+              return res
+                  ? const Icon(
+                      Icons.favorite,
+                      color: Colors.pink,
+                    )
+                  : const Icon(
+                      Icons.favorite_border,
+                      color: Colors.pink,
+                    );
+            }
+            return const Text("");
+          },
+        ),
         title: Text(widget.place),
         trailing: Text(widget.temp),
         onTap: () {
+          tapWeatherCardToDataBase(widget.place);
           setState(() {
             isFavorite = !isFavorite;
           });
@@ -44,7 +54,7 @@ class _WeatherCardState extends State<WeatherCard> {
   }
 
   @override
-  void initState() {
+  initState() {
     isFavorite = false;
     super.initState();
   }
