@@ -17,14 +17,39 @@ Future<bool> doesUserExist() async {
   final DatabaseReference reference =
       FirebaseDatabase.instance.ref().child("/users/$uid");
   final DatabaseEvent data = await reference.once();
-  return null == data.snapshot.value;
+  return !(null == data.snapshot.value);
+}
+
+// should never even happen!
+Future<bool> doesUserHaveSettings() async {
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final DatabaseReference reference =
+      FirebaseDatabase.instance.ref().child("/users/$uid/settings");
+  final DatabaseEvent data = await reference.once();
+  return !(null == data.snapshot.value);
 }
 
 void setupUser() {
   final String uid = FirebaseAuth.instance.currentUser!.uid;
   final DatabaseReference reference =
       FirebaseDatabase.instance.ref().child("/users/$uid/settings/");
-  reference.child("/lang/").set({"lang": "eng"});
-  reference.child("/typo/").set({"write": "lat"});
-  reference.child("/unit/").set({"unit": "Celsius"});
+  reference.child("/lang/").set("en");
+  reference.child("/typo/").set("lat");
+  reference.child("/unit/").set("metric");
+}
+
+Future<String> getSettings(String setting) async {
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final DatabaseReference reference =
+      FirebaseDatabase.instance.ref().child("/users/$uid/settings/$setting/");
+  var snap = await reference.once();
+  print(snap.snapshot.value);
+  return snap.snapshot.value as String;
+}
+
+void setSettings(String setting, String newVal) {
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final DatabaseReference reference =
+      FirebaseDatabase.instance.ref().child("/users/$uid/settings/$setting/");
+  reference.set(newVal);
 }
