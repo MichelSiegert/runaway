@@ -13,10 +13,11 @@ Future<Weather> getWeatherByLongLat(double lat, double lon) async {
   return weather;
 }
 
-getWeatherInArea(final double lat, final double lon) async {
+getWeatherInArea(
+    final double lat, final double lon, final String lan, String units) async {
   final int num = MenuPage.numEntries;
   final url = Uri.parse(
-      "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&lang=de&units=metric");
+      "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&lang=$lan&units=$units");
   final result = await http.post(url);
   final Map<String, dynamic> allData = jsonDecode(result.body);
   return parse(allData);
