@@ -9,7 +9,7 @@ void tapWeatherCardToDataBase(String place) async {
       database.child("/users/$uid/favorites/$place");
   final DatabaseEvent getData = await reference.once();
   if (getData.snapshot.value == null) {
-    reference.set({place: "isFavorite"});
+    reference.set(place);
   } else {
     reference.set(null);
   }
@@ -19,9 +19,8 @@ Future isThisPlaceAFavoriteOfUser(String place) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
   final String uid = FirebaseAuth.instance.currentUser!.uid;
   final DatabaseReference reference =
-  database.child("/users/$uid/favorites/$place");
+      database.child("/users/$uid/favorites/$place");
   final DatabaseEvent getData = await reference.once();
   bool result = !(getData.snapshot.value == null);
   return result;
 }
-
