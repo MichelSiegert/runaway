@@ -29,35 +29,13 @@ Future isThisPlaceAFavoriteOfUser(String place) async {
   return result;
 }
 
-Future<void> LanguageToDb(String language) async {
+Future<void> writeSettingsToDatabase(String setting, String value) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
   final FirebaseAuth auth = FirebaseAuth.instance;
   final User us = auth.currentUser!;
   final String uid = us.uid;
 
   final DatabaseReference reference =
-  database.child("/users/$uid/settings/language");
-  reference.set({"lang": language});
-}
-
-Future<void> LanguageDisplayToDb(String display) async {
-  final DatabaseReference database = FirebaseDatabase.instance.ref();
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final User us = auth.currentUser!;
-  final String uid = us.uid;
-
-  final DatabaseReference reference =
-  database.child("/users/$uid/settings/languageDisplay");
-  reference.set({"display": display});
-}
-
-Future<void> MetricToDb(String metric) async {
-  final DatabaseReference database = FirebaseDatabase.instance.ref();
-  final FirebaseAuth auth = FirebaseAuth.instance;
-  final User us = auth.currentUser!;
-  final String uid = us.uid;
-
-  final DatabaseReference reference =
-  database.child("/users/$uid/settings/metrics");
-  reference.set({"metric": metric});
+  database.child("/users/$uid/settings/$setting");
+  reference.set({"lang": value});
 }
