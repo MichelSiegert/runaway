@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ffi';
 
 import 'package:away/Logic/Database/settings.dart';
 import 'package:away/Pages/Menu/menu_page.dart';
@@ -28,17 +29,16 @@ Future<Weather> getWeatherByName(String name) async {
 }
 
 getWeatherInArea(final double lat, final double lon, final String language,
-    String units) async {
+    String units, double myLoc) async {
   final int num = MenuPage.numEntries;
   final url = Uri.parse(
       "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&units=$units&lang=$language");
-  print(url.toString());
   final result = await http.post(url);
   final Map<String, dynamic> allData = jsonDecode(result.body);
-  return parse(allData);
+  return parse(allData, myLoc);
 }
 
-Widget parse(Map<String, dynamic> json) {
+Widget parse(Map<String, dynamic> json, double myLoc) {
   List<Widget> weatherCards = [];
   json.forEach((key, value) {
     // get all entries.
@@ -46,8 +46,10 @@ Widget parse(Map<String, dynamic> json) {
       List<dynamic> wetterInformationen = value;
       for (var wetterInformation in wetterInformationen) {
         List<String> values = getValues(wetterInformation);
-        weatherCards.add(
-            WeatherCard(place: values[0], temp: values[1], weather: values[2]));
+        if (double.parse(values[1]) > myLoc) {
+          weatherCards.add(WeatherCard(
+              place: values[0], temp: values[1], weather: values[2]));
+        }
       }
     }
   });
