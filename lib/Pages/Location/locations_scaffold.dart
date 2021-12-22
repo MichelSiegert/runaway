@@ -7,8 +7,7 @@ import '../../Widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 
 //
-Scaffold locationScaffold(final String title, BuildContext context) =>
-    Scaffold(
+Scaffold locationScaffold(final String title, BuildContext context) => Scaffold(
       appBar: AppBar(
         title: Text(title),
         backgroundColor: Colors.green,
@@ -19,7 +18,6 @@ Scaffold locationScaffold(final String title, BuildContext context) =>
       drawer: createSidebar(context),
     );
 
-
 Widget buildFuture() {
   return FutureBuilder(
     future: getListOfFavorites(),
@@ -27,8 +25,7 @@ Widget buildFuture() {
       if (snapshot.hasData) {
         return snapshot.data as SizedBox;
       } else {
-        return const Center(child: CircularProgressIndicator()
-        );
+        return const Center(child: CircularProgressIndicator());
       }
     },
   );
@@ -36,23 +33,18 @@ Widget buildFuture() {
 
 Future getListOfFavorites() async {
   List<String> places = await allFavoritePlacesOfUser();
-  print("nice");
   List<WeatherCard> cards = [];
-  print("ice");
   for (var name in places) {
     Weather weather = await getWeatherByName(name);
     cards.add(WeatherCard(
-        place: name,
-        weather: weather.weatherDescription!,
-        temp: weather.tempFeelsLike.toString(),
-
-
+      place: name,
+      weather: weather.weatherDescription!,
+      temp: weather.tempFeelsLike.toString(),
     ));
-    print("ist ein spasst");
   }
 
   return SizedBox.expand(
       child: ListView(
-        children: cards,
-      ));
+    children: cards,
+  ));
 }
