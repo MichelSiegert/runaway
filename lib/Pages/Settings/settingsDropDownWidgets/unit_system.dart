@@ -2,8 +2,8 @@ import 'package:away/Logic/Database/settings.dart';
 import 'package:flutter/material.dart';
 
 class UnitSystems extends StatefulWidget {
-  UnitSystems({Key? key}) : super(key: key);
-  String dropdownValue = "metric";
+  UnitSystems(this.dropdownValue, {Key? key}) : super(key: key);
+  String dropdownValue;
 
   @override
   UnitSystemsState createState() => UnitSystemsState();

@@ -2,8 +2,8 @@ import 'package:away/Logic/Database/settings.dart';
 import 'package:flutter/material.dart';
 
 class Languages extends StatefulWidget {
-  Languages({Key? key}) : super(key: key);
-  String dropdownValue = "lt";
+  Languages(this.dropdownValue, {Key? key}) : super(key: key);
+  String dropdownValue;
 
   @override
   LanguagesState createState() => LanguagesState();

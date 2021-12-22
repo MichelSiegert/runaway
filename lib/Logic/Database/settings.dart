@@ -43,7 +43,6 @@ Future<String> getSettings(String setting) async {
   final DatabaseReference reference =
       FirebaseDatabase.instance.ref().child("/users/$uid/settings/$setting/");
   var snap = await reference.once();
-  print(snap.snapshot.value);
   return snap.snapshot.value as String;
 }
 
