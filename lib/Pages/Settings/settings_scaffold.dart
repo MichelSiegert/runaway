@@ -1,3 +1,4 @@
+import 'package:away/Logic/screen_size_calculator.dart';
 import 'package:away/Pages/Settings/settingsDropDownWidgets/unit_system.dart';
 import 'package:away/Widgets/sidebar.dart';
 
@@ -14,26 +15,36 @@ Scaffold settingScaffold(final String title, BuildContext context) => Scaffold(
       //Text in the middle of the page
       body: Container(
         padding: const EdgeInsets.all(16),
-                child: SizedBox.expand(
+        child: SizedBox.expand(
             child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [const Text("Language Style"), DropDownLanguage()],
+            SizedBox(
+              width: calculateWidth(1, context),
+              height: calculateHeight(0.1, context),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [const Text("Language Style"), DropDownLanguage()],
+              ),
             ),
             const Divider(),
             //Sprache
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [const Text("Language"), Languages()],
-            ),
+            SizedBox(
+                width: calculateWidth(1, context),
+                height: calculateHeight(0.1, context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [const Text("Language"), Languages()],
+                )),
             const Divider(),
             //Temperatureinheit:
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceAround,
-              children: [const Text("Unit"), UnitSystems()],
-            ),
+            SizedBox(
+                width: calculateWidth(1, context),
+                height: calculateHeight(0.1, context),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  children: [const Text("Unit"), UnitSystems()],
+                )),
             const Divider(),
           ],
         )),
