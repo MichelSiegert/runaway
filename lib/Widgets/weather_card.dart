@@ -1,6 +1,6 @@
 import 'dart:core';
 
-import 'package:away/Database/weather.dart';
+import 'package:away/Logic/Database/weather.dart';
 import 'package:flutter/material.dart';
 
 class WeatherCard extends StatefulWidget {

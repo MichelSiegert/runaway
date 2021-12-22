@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
-
+// this page is for storing information regarding the weather
 void tapWeatherCardToDataBase(String place) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
   final String uid = FirebaseAuth.instance.currentUser!.uid;
