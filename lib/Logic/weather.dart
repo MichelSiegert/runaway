@@ -1,5 +1,4 @@
 import 'dart:convert';
-import 'dart:ffi';
 
 import 'package:away/Logic/Database/settings.dart';
 import 'package:away/Pages/Menu/menu_page.dart';
