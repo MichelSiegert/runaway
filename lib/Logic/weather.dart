@@ -13,8 +13,15 @@ Future<Weather> getWeatherByLongLat(double lat, double lon) async {
   return weather;
 }
 
-getWeatherInArea(
-    final double lat, final double lon, final String lan, String units) async {
+Future<Weather> getWeatherByName(String name) async
+{
+  final WeatherFactory wf = WeatherFactory("1c1a1b5bc5706b35790855762fe5b8c3",
+      language: Language.GERMAN);
+  final Weather weather = await wf.currentWeatherByCityName(name);
+  return weather;
+  }
+
+getWeatherInArea(final double lat, final double lon, final String lan, String units) async {
   final int num = MenuPage.numEntries;
   final url = Uri.parse(
       "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&lang=$lan&units=$units");
