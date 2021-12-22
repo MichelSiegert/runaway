@@ -44,7 +44,7 @@ class _WeatherCardState extends State<WeatherCard> {
           },
         ),
         title: Text(widget.place),
-        trailing: Text(widget.temp),
+        trailing: Column(children: [Text(widget.weather), Text(widget.temp)]),
         onTap: () {
           tapWeatherCardToDataBase(widget.place);
           setState(() {
