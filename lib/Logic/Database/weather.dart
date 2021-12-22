@@ -24,3 +24,16 @@ Future isThisPlaceAFavoriteOfUser(String place) async {
   bool result = !(getData.snapshot.value == null);
   return result;
 }
+
+Future allFavoritePlacesOfUser() async {
+  final DatabaseReference database = FirebaseDatabase.instance.ref();
+  final String uid = FirebaseAuth.instance.currentUser!.uid;
+  final DatabaseReference reference = database.child("/users/$uid/favorites/");
+  final DatabaseEvent getData = await reference.once();
+  var test = getData.snapshot.value! as Map<Object?, Object?>;
+  List<String> places = [];
+  test.forEach((key, value) {
+    places.add(value as String);
+  });
+  return places;
+}
