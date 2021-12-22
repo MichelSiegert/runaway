@@ -84,7 +84,7 @@ String getWeatherFromJSON(List<dynamic> weatherinfo) {
   for (var value in weatherinfo) {
     Map<String, dynamic> isClouded = value;
     isClouded.forEach((key, value) {
-      if (key == "main") {
+      if (key == "description") {
         weather = value.toString();
       }
     });

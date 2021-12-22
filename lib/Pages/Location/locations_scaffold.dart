@@ -1,3 +1,4 @@
+import 'package:away/Logic/Database/settings.dart';
 import 'package:away/Logic/Database/weather.dart';
 import 'package:away/Logic/weather.dart';
 import 'package:away/Widgets/weather_card.dart';
@@ -39,7 +40,9 @@ Future getListOfFavorites() async {
     cards.add(WeatherCard(
       place: name,
       weather: weather.weatherDescription!,
-      temp: weather.tempFeelsLike.toString(),
+      temp: await (getSettings("unit")) == "metric"
+          ? weather.tempFeelsLike!.celsius!.round().toString()
+          : weather.tempFeelsLike!.fahrenheit!.round().toString(),
     ));
   }
 
