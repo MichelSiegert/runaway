@@ -8,10 +8,10 @@ class RegisterPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RegisterScaffold("Register", context);
+    return registerScaffold("Register", context);
   }
 
-  Scaffold RegisterScaffold(String s, BuildContext context) {
+  Scaffold registerScaffold(String s, BuildContext context) {
     String mail = "";
     String password = "";
 
@@ -46,7 +46,7 @@ class RegisterPage extends StatelessWidget {
               TextButton(
                   onPressed: () async {
                     AuthService auth = AuthService();
-                    await auth.Register(mail, password);
+                    await auth.register(mail, password);
                     Navigator.pushNamed(context, "/");
                   },
                   child: const Text("Register"))

@@ -19,7 +19,7 @@ class LanguagesState extends State<Languages> {
         "Latinus": "lt",
         "Deutsch": "de",
         "English": "en",
-        "tlhInganpu\'": "kl",
+        "tlhInganpu'": "kl",
         "Esperanto": "ep"
       }
           .map(

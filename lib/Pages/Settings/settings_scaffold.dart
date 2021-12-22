@@ -1,4 +1,5 @@
 import 'package:away/Logic/Database/settings.dart';
+import 'package:away/Logic/Database/weather.dart';
 import 'package:away/Logic/screen_size_calculator.dart';
 import 'package:away/Pages/Settings/settingsDropDownWidgets/unit_system.dart';
 import 'package:away/Widgets/sidebar.dart';
@@ -79,6 +80,7 @@ Scaffold settingScaffold(
 
 // not beautiful but it works.
 Future prepareLoadscreen() async {
+  allFavoritePlacesOfUser();
   String output = "";
   output = await getSettings("lang");
   output += ";";

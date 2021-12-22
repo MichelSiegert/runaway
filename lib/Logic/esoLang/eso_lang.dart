@@ -11,7 +11,6 @@ String translateStringToMoseCode(String input) {
   for (int i = 0; i < input.length; i++) {
     text += morseCodeOf(input[i].toLowerCase());
   }
-  print(text);
   return text;
 }
 
