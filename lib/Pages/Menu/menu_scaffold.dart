@@ -1,4 +1,4 @@
-import 'package:away/Database/settings.dart';
+import 'package:away/Logic/Database/settings.dart';
 import 'package:away/Logic/location.dart';
 import 'package:away/Logic/weather.dart';
 import 'package:away/Widgets/sidebar.dart';

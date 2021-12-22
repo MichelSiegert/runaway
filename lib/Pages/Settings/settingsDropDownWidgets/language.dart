@@ -1,4 +1,4 @@
-import 'package:away/Database/settings.dart';
+import 'package:away/Logic/Database/settings.dart';
 import 'package:flutter/material.dart';
 
 class Languages extends StatefulWidget {
