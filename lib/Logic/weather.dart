@@ -52,6 +52,11 @@ Widget parse(Map<String, dynamic> json, double myLoc) {
       }
     }
   });
+  if (weatherCards.isEmpty) {
+    return const Center(
+      child: Text("there is no escaping the bad weather, sorry pal!"),
+    );
+  }
 
   return ListView(children: weatherCards);
 }
