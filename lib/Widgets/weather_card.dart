@@ -58,7 +58,7 @@ class _WeatherCardState extends State<WeatherCard> {
         title: Text(widget.place),
         trailing: Column(children: [Text(widget.weather), Text(widget.temp)]),
         onTap: () {
-          /*TODO IMPLEMENT TAPPING*/
+          Navigator.pushNamed(context, "onePlace", arguments: widget.weather);
         });
   }
 
