@@ -57,7 +57,9 @@ class _WeatherCardState extends State<WeatherCard> {
         ),
         title: Text(widget.place),
         trailing: Column(children: [Text(widget.weather), Text(widget.temp)]),
-        onTap: () {});
+        onTap: () {
+          /*TODO IMPLEMENT TAPPING*/
+        });
   }
 
   @override
