@@ -80,7 +80,6 @@ Scaffold settingScaffold(
 
 // not beautiful but it works.
 Future prepareLoadscreen() async {
-  allFavoritePlacesOfUser();
   String output = "";
   output = await getSettings("lang");
   output += ";";
