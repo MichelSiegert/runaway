@@ -31,12 +31,24 @@ class _WeatherCardState extends State<WeatherCard> {
             if (snapshot.hasData) {
               bool res = snapshot.data as bool;
               return res
-                  ? const Icon(
-                      Icons.favorite,
+                  ? IconButton(
+                      onPressed: () {
+                        tapWeatherCardToDataBase(widget.place);
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      },
+                      icon: const Icon(Icons.favorite),
                       color: Colors.pink,
                     )
-                  : const Icon(
-                      Icons.favorite_border,
+                  : IconButton(
+                      onPressed: () {
+                        tapWeatherCardToDataBase(widget.place);
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      },
+                      icon: const Icon(Icons.favorite_border),
                       color: Colors.pink,
                     );
             }
@@ -45,12 +57,7 @@ class _WeatherCardState extends State<WeatherCard> {
         ),
         title: Text(widget.place),
         trailing: Column(children: [Text(widget.weather), Text(widget.temp)]),
-        onTap: () {
-          tapWeatherCardToDataBase(widget.place);
-          setState(() {
-            isFavorite = !isFavorite;
-          });
-        });
+        onTap: () {});
   }
 
   @override
