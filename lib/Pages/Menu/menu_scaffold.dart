@@ -3,7 +3,6 @@ import 'package:away/Logic/location.dart';
 import 'package:away/Logic/screen_size_calculator.dart';
 import 'package:away/Logic/weather.dart';
 import 'package:away/Widgets/sidebar.dart';
-import 'package:flutter/cupertino.dart';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -98,7 +97,6 @@ class HomePage extends StatelessWidget {
     if (!canLogin) setupUser();
     var _currentPosition = await getLongLat();
     String lang = await getSettings("lang");
-    print(":" + lang + ":");
     String units = await getSettings("unit");
     myLoc ??= await getMyLoc();
     return getWeatherInArea(
