@@ -33,8 +33,14 @@ Widget buildFuture() {
 }
 
 Future getListOfFavorites() async {
-  List<String> places = await allFavoritePlacesOfUser();
+  List<String>? places = await allFavoritePlacesOfUser();
   List<WeatherCard> cards = [];
+  if (places == null) {
+    return const SizedBox(
+        child: Center(
+      child: Text("You have no Favorite places! klick the heart!"),
+    ));
+  }
   for (var name in places) {
     Weather weather = await getWeatherByName(name);
     cards.add(WeatherCard(

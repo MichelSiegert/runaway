@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
+
 // this page is for storing information regarding the weather
 void tapWeatherCardToDataBase(String place) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
@@ -30,6 +32,7 @@ Future allFavoritePlacesOfUser() async {
   final String uid = FirebaseAuth.instance.currentUser!.uid;
   final DatabaseReference reference = database.child("/users/$uid/favorites/");
   final DatabaseEvent getData = await reference.once();
+  if (getData.snapshot.value == null) return null;
   var test = getData.snapshot.value! as Map<Object?, Object?>;
   List<String> places = [];
   test.forEach((key, value) {
