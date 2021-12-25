@@ -100,13 +100,21 @@ class HomePage extends StatelessWidget {
     String lang = await getSettings("lang");
     print(":" + lang + ":");
     String units = await getSettings("unit");
-    while(myLoc == null){}
+    myLoc ??= await getMyLoc();
     return getWeatherInArea(
         _currentPosition.latitude, _currentPosition.longitude, lang, units, myLoc!);
   }
 
   Future getWeatherForLocation() async {
+    bool canLogin = await doesUserExist() && await doesUserHaveSettings();
+    if (!canLogin) setupUser();
     Position p = await getLongLat();
     return await getWeatherByLongLat(p.latitude, p.longitude);
+  }
+
+  Future<double> getMyLoc() async {
+    Position p = await getLongLat();
+    Weather w=  (await getWeatherByLongLat(p.latitude, p.longitude));
+    return w.tempFeelsLike!.celsius!;
   }
 }
