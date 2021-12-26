@@ -4,12 +4,13 @@ class OnePlace extends StatefulWidget {
   const OnePlace({Key? key, required String title}) : super(key: key);
 
   @override
-  OnePlace_State createState() => OnePlace_State();
+  OnePlaceState createState() => OnePlaceState();
 }
 
-class OnePlace_State extends State<OnePlace> {
+class OnePlaceState extends State<OnePlace> {
   @override
   Widget build(BuildContext context) {
-    return Container();
+    final args = ModalRoute.of(context)!.settings.arguments as String;
+    return Text(args);
   }
 }

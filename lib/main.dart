@@ -12,6 +12,6 @@ void main() => runApp(MaterialApp(routes: {
       '/settings': (context) => const SettingsPage(title: "Runaway"),
       '/locations': (context) => const LocationsPage(title: "Runaway"),
       '/register': (context) => const RegisterPage(title: "Runaway"),
-      '/': (context) => const LoginPage(title: "Runaway"),
-      "/onePlace": (context)=> const OnePlace(title:"Runaway",)
+      "/onePlace": (context) => const OnePlace(title: '',),
+      '/': (context) => const LoginPage(title: "Runaway")
     }));
