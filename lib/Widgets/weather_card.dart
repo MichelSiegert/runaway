@@ -7,12 +7,14 @@ class WeatherCard extends StatefulWidget {
   final String place;
   final String temp;
   final String weather;
+  final String lon, lat;
 
   const WeatherCard(
       {Key? key,
       required this.place,
       required this.temp,
-      required this.weather})
+      required this.weather,
+ required this.lon, required this.lat})
       : super(key: key);
 
   @override

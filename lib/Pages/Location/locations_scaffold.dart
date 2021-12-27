@@ -44,6 +44,8 @@ Future getListOfFavorites() async {
   for (var name in places) {
     Weather weather = await getWeatherByName(name);
     cards.add(WeatherCard(
+      lat:weather.latitude.toString(),
+      lon: weather.longitude.toString(),
       place: name,
       weather: weather.weatherDescription!,
       temp: await (getSettings("unit")) == "metric"

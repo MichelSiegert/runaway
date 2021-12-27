@@ -20,7 +20,7 @@ class HomePage extends StatelessWidget {
   Scaffold menuScaffold(final String title, BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomAppBar(
-        child: Container(
+        child: SizedBox(
             width: calculateWidth(1, context),
             height: calculateHeight(0.15, context),
             child: makeFooter(context)),
@@ -99,8 +99,9 @@ class HomePage extends StatelessWidget {
     String lang = await getSettings("lang");
     String units = await getSettings("unit");
     myLoc ??= await getMyLoc();
-    return getWeatherInArea(
-        _currentPosition.latitude, _currentPosition.longitude, lang, units, myLoc!);
+    print(myLoc);
+    return getWeatherInArea(_currentPosition.latitude,
+        _currentPosition.longitude, lang, units, myLoc!);
   }
 
   Future getWeatherForLocation() async {
@@ -112,7 +113,7 @@ class HomePage extends StatelessWidget {
 
   Future<double> getMyLoc() async {
     Position p = await getLongLat();
-    Weather w=  (await getWeatherByLongLat(p.latitude, p.longitude));
+    Weather w = (await getWeatherByLongLat(p.latitude, p.longitude));
     return w.tempFeelsLike!.celsius!;
   }
 }
