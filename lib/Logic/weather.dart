@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:weather/weather.dart';
 
+import 'information_place.dart';
+
 Future<Weather> getWeatherByLongLat(double lat, double lon) async {
   final WeatherFactory wf = await (getSettings("lang")) == "de"
       ? WeatherFactory("1c1a1b5bc5706b35790855762fe5b8c3",
@@ -30,12 +32,10 @@ Future<Weather> getWeatherByName(String name) async {
 getWeatherInArea(final double lat, final double lon, final String language,
     String units, double myLoc) async {
   final int num = MenuPage.numEntries;
-  print("a");
   final url = Uri.parse(
       "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&units=$units&lang=$language");
   final result = await http.post(url);
   final Map<String, dynamic> allData = jsonDecode(result.body);
-  print("b");
   return parse(allData, myLoc);
 }
 
@@ -44,13 +44,12 @@ Widget parse(Map<String, dynamic> json, double myLoc) {
   json.forEach((key, value) {
     if (key == "list") {
       List<dynamic> wetterInformationen = value;
-      print("c");
       for (var wetterInformation in wetterInformationen) {
         List<String> values = getValues(wetterInformation);
-        print("d");
         if (double.parse(values[3]) > myLoc) {
-          weatherCards.add(WeatherCard(
-              place: values[0],lat: values[1], lon:  values[2], temp: values[3], weather: values[4]));
+          weatherCards.add(WeatherCard(key: null,
+              informationPlace: InformationPlace(place: values[0],lat: values[1], lon:  values[2], temp: values[3], weather: values[4]),
+              ));
         }
       }
     }
@@ -86,7 +85,6 @@ List<String> getValues(Map<String, dynamic> weatherinfo) {
 
 String getLat(Map<String, dynamic> coord) {
   String lat = "";
-  print(coord);
   coord.forEach((key, val) {
     if (key == "lat") lat = val.toString();
   });

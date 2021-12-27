@@ -1,5 +1,6 @@
 import 'package:away/Logic/Database/settings.dart';
 import 'package:away/Logic/Database/weather.dart';
+import 'package:away/Logic/information_place.dart';
 import 'package:away/Logic/weather.dart';
 import 'package:away/Widgets/weather_card.dart';
 import 'package:weather/weather.dart';
@@ -43,14 +44,15 @@ Future getListOfFavorites() async {
   }
   for (var name in places) {
     Weather weather = await getWeatherByName(name);
-    cards.add(WeatherCard(
+    cards.add(WeatherCard(informationPlace: InformationPlace(
+
       lat:weather.latitude.toString(),
       lon: weather.longitude.toString(),
       place: name,
       weather: weather.weatherDescription!,
       temp: await (getSettings("unit")) == "metric"
           ? weather.tempFeelsLike!.celsius!.round().toString()
-          : weather.tempFeelsLike!.fahrenheit!.round().toString(),
+          : weather.tempFeelsLike!.fahrenheit!.round().toString()), key: null,
     ));
   }
 

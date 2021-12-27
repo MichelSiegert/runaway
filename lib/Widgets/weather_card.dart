@@ -1,21 +1,16 @@
 import 'dart:core';
 
 import 'package:away/Logic/Database/weather.dart';
+import 'package:away/Logic/information_place.dart';
 import 'package:flutter/material.dart';
 
 class WeatherCard extends StatefulWidget {
-  final String place;
-  final String temp;
-  final String weather;
-  final String lon, lat;
+  final InformationPlace informationPlace;
 
-  const WeatherCard(
-      {Key? key,
-      required this.place,
-      required this.temp,
-      required this.weather,
- required this.lon, required this.lat})
-      : super(key: key);
+  const WeatherCard({
+    required Key? key,
+    required this.informationPlace,
+  }) : super(key: key);
 
   @override
   _WeatherCardState createState() => _WeatherCardState();
@@ -28,14 +23,14 @@ class _WeatherCardState extends State<WeatherCard> {
   Widget build(BuildContext context) {
     return ListTile(
         leading: FutureBuilder(
-          future: isThisPlaceAFavoriteOfUser(widget.place),
+          future: isThisPlaceAFavoriteOfUser(widget.informationPlace.place),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               bool res = snapshot.data as bool;
               return res
                   ? IconButton(
                       onPressed: () {
-                        tapWeatherCardToDataBase(widget.place);
+                        tapWeatherCardToDataBase(widget.informationPlace.place);
                         setState(() {
                           isFavorite = !isFavorite;
                         });
@@ -45,7 +40,7 @@ class _WeatherCardState extends State<WeatherCard> {
                     )
                   : IconButton(
                       onPressed: () {
-                        tapWeatherCardToDataBase(widget.place);
+                        tapWeatherCardToDataBase(widget.informationPlace.place);
                         setState(() {
                           isFavorite = !isFavorite;
                         });
@@ -57,10 +52,10 @@ class _WeatherCardState extends State<WeatherCard> {
             return const Text("");
           },
         ),
-        title: Text(widget.place),
-        trailing: Column(children: [Text(widget.weather), Text(widget.temp)]),
+        title: Text(widget.informationPlace.place),
+        trailing: Column(children: [Text(widget.informationPlace.weather), Text(widget.informationPlace.temp)]),
         onTap: () {
-          Navigator.pushNamed(context, "/onePlace", arguments: widget.weather);
+          Navigator.pushNamed(context, "/onePlace", arguments: widget.informationPlace.weather);
         });
   }
 

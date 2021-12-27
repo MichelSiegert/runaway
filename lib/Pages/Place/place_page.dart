@@ -12,5 +12,6 @@ class OnePlaceState extends State<OnePlace> {
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as String;
     return Text(args);
+
   }
 }
