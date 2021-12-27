@@ -99,7 +99,6 @@ class HomePage extends StatelessWidget {
     String lang = await getSettings("lang");
     String units = await getSettings("unit");
     myLoc ??= await getMyLoc();
-    print(myLoc);
     return getWeatherInArea(_currentPosition.latitude,
         _currentPosition.longitude, lang, units, myLoc!);
   }
