@@ -1,8 +1,10 @@
+import 'package:away/Logic/Database/settings.dart';
 import 'package:flutter/material.dart';
 
 class DropDownLanguage extends StatefulWidget {
-  DropDownLanguage({Key? key}) : super(key: key);
-  String dropdownValue = "Latin";
+  String dropdownValue;
+
+  DropDownLanguage(this.dropdownValue, {Key? key}) : super(key: key);
 
   @override
   DropDownLanguageState createState() => DropDownLanguageState();
@@ -13,17 +15,26 @@ class DropDownLanguageState extends State<DropDownLanguage> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: widget.dropdownValue,
-      items: <String>["Latin", "binary", "morsecode"]
-          .map<DropdownMenuItem<String>>(
-              (String entry) => DropdownMenuItem<String>(
-                    value: entry,
-                    child: Text(entry),
-                  ))
+      items: {"Latin":"lat",
+        "binary":"bin",
+        "morsecode":"mor"}
+
+          .map(
+            (description, value) => MapEntry(
+          description,
+          DropdownMenuItem<String>(
+            value: value,
+            child: Text(description),
+          ),
+        ),
+      )
+          .values
           .toList(),
       onChanged: (String? newVal) {
+        setSettings("typo", newVal!);
         setState(() {
-          //TODO hier muss noch das in die DB gespeichert werden.
-          widget.dropdownValue = newVal!;
+          widget.dropdownValue = newVal;
+
         });
       },
     );

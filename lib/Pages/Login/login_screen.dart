@@ -76,9 +76,9 @@ List<Widget> createLoginForm(BuildContext context) {
         child: const Text("Sign in with Google!"),
         onPressed: () async {
           _authent.signInWithGoogle().then((user) {
-            if (user == null)
+            if (user == null) {
               print("something went wrong!");
-            else {
+            } else {
               Navigator.pop(context);
               Navigator.pushNamed(context, "/menu");
             }

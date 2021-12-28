@@ -1,19 +1,16 @@
 import 'dart:core';
 
-import 'package:away/Logic/database.dart';
+import 'package:away/Logic/Database/weather.dart';
+import 'package:away/Logic/information_place.dart';
 import 'package:flutter/material.dart';
 
 class WeatherCard extends StatefulWidget {
-  final String place;
-  final String temp;
-  final String weather;
+  final InformationPlace informationPlace;
 
-  const WeatherCard(
-      {Key? key,
-      required this.place,
-      required this.temp,
-      required this.weather})
-      : super(key: key);
+  const WeatherCard({
+    required Key? key,
+    required this.informationPlace,
+  }) : super(key: key);
 
   @override
   _WeatherCardState createState() => _WeatherCardState();
@@ -26,30 +23,39 @@ class _WeatherCardState extends State<WeatherCard> {
   Widget build(BuildContext context) {
     return ListTile(
         leading: FutureBuilder(
-          future: isThisPlaceAFavoriteOfUser(widget.place),
+          future: isThisPlaceAFavoriteOfUser(widget.informationPlace.place),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               bool res = snapshot.data as bool;
               return res
-                  ? const Icon(
-                      Icons.favorite,
+                  ? IconButton(
+                      onPressed: () {
+                        tapWeatherCardToDataBase(widget.informationPlace.place);
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      },
+                      icon: const Icon(Icons.favorite),
                       color: Colors.pink,
                     )
-                  : const Icon(
-                      Icons.favorite_border,
+                  : IconButton(
+                      onPressed: () {
+                        tapWeatherCardToDataBase(widget.informationPlace.place);
+                        setState(() {
+                          isFavorite = !isFavorite;
+                        });
+                      },
+                      icon: const Icon(Icons.favorite_border),
                       color: Colors.pink,
                     );
             }
             return const Text("");
           },
         ),
-        title: Text(widget.place),
-        trailing: Text(widget.temp),
+        title: Text(widget.informationPlace.place),
+        trailing: Column(children: [Text(widget.informationPlace.weather), Text(widget.informationPlace.temp)]),
         onTap: () {
-          tapWeatherCardToDataBase(widget.place);
-          setState(() {
-            isFavorite = !isFavorite;
-          });
+          Navigator.pushNamed(context, "/onePlace", arguments: widget.informationPlace.weather);
         });
   }
 

@@ -1,8 +1,9 @@
+import 'package:away/Logic/Database/settings.dart';
 import 'package:flutter/material.dart';
 
 class Languages extends StatefulWidget {
-  Languages({Key? key}) : super(key: key);
-  String dropdownValue = "Latinus";
+  Languages(this.dropdownValue, {Key? key}) : super(key: key);
+  String dropdownValue;
 
   @override
   LanguagesState createState() => LanguagesState();
@@ -13,17 +14,31 @@ class LanguagesState extends State<Languages> {
   Widget build(BuildContext context) {
     return DropdownButton<String>(
       value: widget.dropdownValue,
-      items: <String>["Latinus","Deutsch", "English", "tlhInganpu\'", "Esperanto"]
-          .map<DropdownMenuItem<String>>(
-              (String entry) => DropdownMenuItem<String>(
-            value: entry,
-            child: Text(entry),
-          ))
+      //TODO this solution has to be better.
+      items: {
+        "Latinus": "lt",
+        "Deutsch": "de",
+        "English": "en",
+        "tlhInganpu'": "kl",
+        "Esperanto": "ep"
+      }
+          .map(
+            (description, value) => MapEntry(
+              description,
+              DropdownMenuItem<String>(
+                value: value,
+                child: Text(description),
+              ),
+            ),
+          )
+          .values
           .toList(),
       onChanged: (String? newVal) {
+        //TODO setSettings is for db, rename
+        setSettings("lang", newVal!);
         setState(() {
-          //TODO hier muss noch das in die DB gespeichert werden.
-          widget.dropdownValue = newVal!;
+          widget.dropdownValue = newVal;
+
         });
       },
     );
