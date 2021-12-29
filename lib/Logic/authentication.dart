@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+//this class solves every issue regarding login and registration.
+
 class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 

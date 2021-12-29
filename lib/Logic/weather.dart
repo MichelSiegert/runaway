@@ -9,6 +9,7 @@ import 'package:weather/weather.dart';
 
 import 'information_place.dart';
 
+//this class handles the open weather api and parses the information.
 Future<Weather> getWeatherByLongLat(double lat, double lon) async {
   final WeatherFactory wf = await (getSettings("lang")) == "de"
       ? WeatherFactory("1c1a1b5bc5706b35790855762fe5b8c3",

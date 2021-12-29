@@ -1,12 +1,13 @@
-import 'package:away/Pages/Location/locations_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import '../favorites_page.dart';
+
 
 void main() {
-  testWidgets('Test der Locationspage', (WidgetTester tester) async {
+  testWidgets('Test der favorites page', (WidgetTester tester) async {
     await  tester.pumpWidget(const MaterialApp(
-    home: LocationsPage(title: "Runaway"),
+    home: FavoritesPage(title: "Runaway"),
     ),
     );
     final findTitle = find.text("Runaway");

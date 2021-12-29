@@ -8,8 +8,7 @@ import 'package:weather/weather.dart';
 import '../../Widgets/sidebar.dart';
 import 'package:flutter/material.dart';
 
-//
-Scaffold locationScaffold(final String title, BuildContext context) => Scaffold(
+Scaffold favoriteScaffold(final String title, BuildContext context) => Scaffold(
       appBar: AppBar(
         title: Text(title),
         backgroundColor: Colors.green,

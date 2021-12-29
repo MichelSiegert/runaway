@@ -2,6 +2,7 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
+//this file is for interacting with the location sensor of the phone.
 Future<Position> getLongLat() async {
   Position p = await Geolocator.getCurrentPosition(
       desiredAccuracy: LocationAccuracy.best);

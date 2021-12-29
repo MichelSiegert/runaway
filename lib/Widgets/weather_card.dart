@@ -4,6 +4,8 @@ import 'package:away/Logic/Database/weather.dart';
 import 'package:away/Logic/information_place.dart';
 import 'package:flutter/material.dart';
 
+
+//creates the weather card for locations and favorites.
 class WeatherCard extends StatefulWidget {
   final InformationPlace informationPlace;
 
