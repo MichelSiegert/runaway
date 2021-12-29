@@ -11,6 +11,7 @@ import 'package:weather/weather.dart';
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
   double? myLoc;
+  late bool inCelsius;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,9 @@ class HomePage extends StatelessWidget {
               Center(child: Text(w.areaName!)),
               Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
                 const Text("Tempreature"),
-                Text(w.tempFeelsLike!.celsius!.floor().toString())
+                inCelsius
+                    ? Text(w.tempFeelsLike!.celsius!.floor().toString())
+                    : Text(w.tempFeelsLike!.fahrenheit!.floor().toString())
               ]),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -104,15 +107,16 @@ class HomePage extends StatelessWidget {
   }
 
   Future getWeatherForLocation() async {
+    inCelsius = (await getSettings("unit")) == "metric";
     bool canLogin = await doesUserExist() && await doesUserHaveSettings();
     if (!canLogin) setupUser();
     Position p = await getLongLat();
-    return await getWeatherByLongLat(p.latitude, p.longitude);
+    return await getWeatherByLatLon(p.latitude, p.longitude);
   }
 
   Future<double> getMyLoc() async {
     Position p = await getLongLat();
-    Weather w = (await getWeatherByLongLat(p.latitude, p.longitude));
+    Weather w = (await getWeatherByLatLon(p.latitude, p.longitude));
     return w.tempFeelsLike!.celsius!;
   }
 }
