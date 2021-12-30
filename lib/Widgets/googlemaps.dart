@@ -77,7 +77,11 @@ Future createPolyLine(
     double lat1, double lon1, double lat2, double lon2) async {
 
   return {};
-/** this code works, however the routing costs money, so I commented it out. BUT I WROTE IT!!!! :C
+/** ATTENTION!
+ *  this code works, however the routing costs money,
+ *  but we wanted to show that we were able to do this.
+ *  so we decided to comment it out.
+ *
  * List<LatLng> polylineCoordinates = [];
   Map<PolylineId, Polyline> polylines = {};
 
