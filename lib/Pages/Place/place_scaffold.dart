@@ -39,7 +39,7 @@ Widget buildScaffold(Weather weather, BuildContext context, Position pos) {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
             const Text("distance:"),
-            Text(calculateDistancebetween2PointsBasedOnLatLon(pos.latitude,pos.longitude, weather.latitude!, weather.longitude!).round().toString()+"km")
+            Text(calculateDistancebetween2PointsBasedOnLatLon(pos.latitude,pos.longitude, weather.latitude!, weather.longitude!).toString()+"km")
           ],
         ),
         Row(
