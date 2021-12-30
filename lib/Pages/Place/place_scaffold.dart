@@ -1,3 +1,4 @@
+import 'package:away/Logic/distcalculator.dart';
 import 'package:away/Logic/location.dart';
 import 'package:away/Widgets/googlemaps.dart';
 import 'package:away/Logic/information_place.dart';
@@ -34,6 +35,13 @@ Widget buildScaffold(Weather weather, BuildContext context, Position pos) {
     body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            const Text("distance:"),
+            Text(calculateDistancebetween2PointsBasedOnLatLon(pos.latitude,pos.longitude, weather.latitude!, weather.longitude!).round().toString()+"km")
+          ],
+        ),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
