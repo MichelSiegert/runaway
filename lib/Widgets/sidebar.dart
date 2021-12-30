@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+//creates the sidebar, also utilizes Map in a clever way.
 Drawer createSidebar(BuildContext context) {
   final seiten = {
     "Locations": "/menu",

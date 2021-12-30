@@ -2,9 +2,12 @@
 import 'package:geocoding/geocoding.dart';
 import 'package:geolocator/geolocator.dart';
 
-Future<Position> getLongLat() async => await Geolocator.getCurrentPosition(
-    desiredAccuracy: LocationAccuracy.best,
-    forceAndroidLocationManager: true);
+//this file is for interacting with the location sensor of the phone.
+Future<Position> getLongLat() async {
+  Position p = await Geolocator.getCurrentPosition(
+      desiredAccuracy: LocationAccuracy.best);
+  return p;
+}
 
 Future<Placemark?> getAddressFromLatLng(Position pos) async {
   try {

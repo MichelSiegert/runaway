@@ -1,4 +1,0 @@
-io/flutter/plugins/GeneratedPluginRegistrant.java
- io.flutter.plugins.GeneratedPluginRegistrant
-de/fh/kiel/away/BuildConfig.java
- de.fh.kiel.away.BuildConfig

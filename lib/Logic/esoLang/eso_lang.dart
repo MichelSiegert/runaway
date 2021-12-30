@@ -1,3 +1,7 @@
+//this file is for... translating into different scripts.
+//it does not add to the functionality of the code in any meaningful way.
+//and was mostly intended as a joke.
+
 String translateStringtoBinary(String input) {
   String text = "";
   for (int i = 0; i < input.length; i++) {

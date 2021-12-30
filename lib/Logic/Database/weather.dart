@@ -1,7 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
-// this page is for storing information regarding the weather
+//this code is necessary for saving and loading favorite places of the user.
+// it does reading and writing.
+//there is also a boolean check to see, if the user already has liked this place.
+
 void tapWeatherCardToDataBase(String place) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
   final String uid = FirebaseAuth.instance.currentUser!.uid;

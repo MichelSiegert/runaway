@@ -1,6 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 
+//this is for writing settings into the database for each individual user.
+// it also takes care for checking if the user actually exists already ( to prepare default settings)
+//it mostly does read and write.
+
 Future<void> writeSettingsToDatabase(String setting, String value) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
   final FirebaseAuth auth = FirebaseAuth.instance;

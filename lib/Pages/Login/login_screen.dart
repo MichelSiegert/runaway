@@ -34,10 +34,12 @@ List<Widget> createLoginForm(BuildContext context) {
         child: const Text("login"),
         onPressed: () async {
           loadingAnimation(context);
-          UserCredential? user = await _authent.login(email, password);
+
+          final user = await _authent.login(email, password);
+          print (user);
           Navigator.pop(context); //pop dialog
 
-          if (user == null) {
+          if (user.runtimeType != UserCredential) {
             print("something went wrong!");
           } else {
             Navigator.pushNamed(context, "/menu");

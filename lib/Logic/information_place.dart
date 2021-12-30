@@ -4,7 +4,7 @@ class InformationPlace {
   final String weather;
   final String temp;
 
-  // data class.
+  // this class is for simply storing and passing data.
   const InformationPlace(
       {required this.place, required this.lat, required this.lon, required this.weather, required this.temp});
 }

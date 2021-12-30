@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 
+// creates a dialog loading anmimation, this has upsides and downsides.
+//upside: it is easy and responsive.
+//con you have to push context at some point and that looks bizarre.
 Future loadingAnimation(BuildContext context) => showDialog(
     context: context,
     builder: (BuildContext context) => Dialog(
