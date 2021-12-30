@@ -37,6 +37,8 @@ dependencies:
   geocoding: ^2.0.1
   google_sign_in: ^5.0.0
   weather: ^2.0.1
+  google_maps_flutter: ^2.0.6
+
 
 
   # The following adds the Cupertino Icons font to your application.
