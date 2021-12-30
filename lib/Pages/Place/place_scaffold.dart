@@ -82,7 +82,7 @@ Widget buildScaffold(Weather weather, BuildContext context, Position pos) {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            const Text("snow last 3 hours?:"),
+            const Text("snow recently?:"),
             weather.snowLast3Hours == null
                 ? const Text("no")
                 : Text(weather.snowLast3Hours.toString())
