@@ -107,9 +107,13 @@ class HomePage extends StatelessWidget {
   }
 
   Future getWeatherForLocation() async {
-    inCelsius = (await getSettings("unit")) == "metric";
     bool canLogin = await doesUserExist() && await doesUserHaveSettings();
-    if (!canLogin) setupUser();
+    if (!canLogin) {
+      setupUser();
+      Future.delayed(const Duration(milliseconds: 500));
+    }
+
+    inCelsius = (await getSettings("unit")) == "metric";
     Position p = await getLongLat();
     return await getWeatherByLatLon(p.latitude, p.longitude);
   }
