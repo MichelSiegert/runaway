@@ -14,6 +14,6 @@ class OnePlaceState extends State<OnePlace> {
   @override
   Widget build(BuildContext context) {
     final args = ModalRoute.of(context)!.settings.arguments as InformationPlace;
-    return placeScaffold(context, args);
+    return buildPlace(context, args);
   }
 }
