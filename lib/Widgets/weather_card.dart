@@ -4,7 +4,6 @@ import 'package:away/Logic/Database/weather.dart';
 import 'package:away/Logic/information_place.dart';
 import 'package:flutter/material.dart';
 
-
 //creates the weather card for locations and favorites.
 class WeatherCard extends StatefulWidget {
   final InformationPlace informationPlace;
@@ -55,9 +54,15 @@ class _WeatherCardState extends State<WeatherCard> {
           },
         ),
         title: Text(widget.informationPlace.place),
-        trailing: Column(children: [Text(widget.informationPlace.weather), Text(widget.informationPlace.temp)]),
+        trailing: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+          Text(widget.informationPlace.weather),
+          Text(widget.informationPlace.temp)
+        ]),
         onTap: () {
-          Navigator.pushNamed(context, "/onePlace", arguments: widget.informationPlace);
+          Navigator.pushNamed(context, "/onePlace",
+              arguments: widget.informationPlace);
         });
   }
 

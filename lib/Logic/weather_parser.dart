@@ -3,24 +3,22 @@ import 'package:flutter/material.dart';
 
 import 'information_place.dart';
 
-List<Widget>? parse(Map<String, dynamic> json, double myLoc) {
+List<Widget> parse(Map<String, dynamic> json) {
   List<Widget> weatherCards = [];
   json.forEach((key, value) {
     if (key == "list") {
       List<dynamic> wetterInformationen = value;
       for (var wetterInformation in wetterInformationen) {
-        List<String> values = getValues(wetterInformation);
-        if (double.parse(values[3]) > myLoc) {
-          weatherCards.add(WeatherCard(
-            key: null,
-            informationPlace: InformationPlace(
-                place: values[0],
-                lat: values[1],
-                lon: values[2],
-                temp: values[3],
-                weather: values[4]),
-          ));
-        }
+        List<String> values = _getValues(wetterInformation);
+        weatherCards.add(WeatherCard(
+          key: null,
+          informationPlace: InformationPlace(
+              place: values[0],
+              lat: values[1],
+              lon: values[2],
+              temp: values[3],
+              weather: values[4]),
+        ));
       }
     }
   });
@@ -28,27 +26,24 @@ List<Widget>? parse(Map<String, dynamic> json, double myLoc) {
   return weatherCards;
 }
 
-List<String> getValues(Map<String, dynamic> weatherinfo) {
+List<String> _getValues(Map<String, dynamic> weatherinfo) {
   List<String> ausgaben = [];
   weatherinfo.forEach((key, value) {
     if (key == "name") {
       ausgaben.add(value);
     } else if (key == "main") {
-      ausgaben.add(getTemp(value));
+      ausgaben.add(_getTemp(value));
     } else if (key == "weather") {
-      ausgaben.add(getWeather(value));
+      ausgaben.add(_getWeather(value));
     } else if (key == "coord") {
-      ausgaben.add(getLat(value));
-      ausgaben.add(getLon(value));
+      ausgaben.add(_getLat(value));
+      ausgaben.add(_getLon(value));
     }
   });
-  for (var element in ausgaben) {
-    print(element);
-  }
   return ausgaben;
 }
 
-String getLat(Map<String, dynamic> coord) {
+String _getLat(Map<String, dynamic> coord) {
   String lat = "";
   coord.forEach((key, val) {
     if (key == "lat") lat = val.toString();
@@ -56,7 +51,7 @@ String getLat(Map<String, dynamic> coord) {
   return lat;
 }
 
-String getLon(Map<String, dynamic> coord) {
+String _getLon(Map<String, dynamic> coord) {
   String lon = "";
   coord.forEach((key, value) {
     if (key == "lon") {
@@ -66,7 +61,7 @@ String getLon(Map<String, dynamic> coord) {
   return lon;
 }
 
-String getTemp(Map<String, dynamic> weatherinfo) {
+String _getTemp(Map<String, dynamic> weatherinfo) {
   String temp = "";
   weatherinfo.forEach((key, value) {
     if (key == "feels_like") {
@@ -76,7 +71,7 @@ String getTemp(Map<String, dynamic> weatherinfo) {
   return temp;
 }
 
-String getWeather(List<dynamic> weatherinfo) {
+String _getWeather(List<dynamic> weatherinfo) {
   String weather = "";
   for (var value in weatherinfo) {
     Map<String, dynamic> isClouded = value;

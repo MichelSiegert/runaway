@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:weather/weather.dart';
 
-import 'ListEntry.dart';
+import 'list_entry.dart';
 
 class PlaceScaff extends StatelessWidget {
   final Weather weather;
