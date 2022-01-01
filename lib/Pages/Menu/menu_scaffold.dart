@@ -1,5 +1,5 @@
 import 'package:away/Pages/Menu/Widget/body/future_menu_body.dart';
-import 'package:away/Widgets/sidebar.dart';
+import 'package:away/Widgets/sidebar/sidebar.dart';
 import 'package:flutter/material.dart';
 
 import 'Widget/foot_future.dart';
@@ -17,7 +17,7 @@ class HomePage extends StatelessWidget {
         backgroundColor: Colors.green,
       ),
       body: const SizedBox.expand(child:FutureMenuBody()),
-      drawer: createSidebar(context),
+      drawer: const Sidebar(),
       bottomNavigationBar: const BottomNavigationBarFuture(),
     );
   }

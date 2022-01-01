@@ -1,7 +1,7 @@
 import 'package:away/Pages/Settings/Widget/settingsDropDownWidgets/language.dart';
 import 'package:away/Pages/Settings/Widget/settingsDropDownWidgets/language_display.dart';
 import 'package:away/Pages/Settings/Widget/settingsDropDownWidgets/unit_system.dart';
-import 'package:away/Widgets/sidebar.dart';
+import 'package:away/Widgets/sidebar/sidebar.dart';
 import 'package:flutter/material.dart';
 
 import 'login_line.dart';
@@ -38,6 +38,6 @@ class SettingScaffold extends StatelessWidget {
           )),
         ),
         //Menu Sidebar
-        drawer: createSidebar(context),
+        drawer: const Sidebar(),
       );
 }

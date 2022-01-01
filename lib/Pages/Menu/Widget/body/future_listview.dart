@@ -40,7 +40,6 @@ class FutureListview extends StatelessWidget {
     Position pos = await getLongLat();
     print (":C:");
     Weather w = await getWeatherByLatLon(pos.latitude, pos.longitude);
-    print(w.toString());
     return w;
   }
 }

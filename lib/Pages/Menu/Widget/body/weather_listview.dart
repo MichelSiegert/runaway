@@ -16,8 +16,6 @@ class WeatherListview extends StatelessWidget {
             mytemp)
         .toList();
     bool placesExist = warmer.isNotEmpty;
-    print(":D:");
-    print(warmer.length);
     if (placesExist) {
       return ListView(
         children: warmer,

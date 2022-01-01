@@ -13,7 +13,7 @@ class LoginLine extends StatelessWidget {
     child: Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       children: [
-        const Text("text"),
+         Text(text),
         dropdown
       ],
     ),
