@@ -1,5 +1,6 @@
 import 'package:away/Logic/distcalculator.dart';
 import 'package:away/Logic/location.dart';
+import 'package:away/Pages/Place/Widget/ListEntry.dart';
 import 'package:away/Widgets/googlemaps.dart';
 import 'package:away/Logic/information_place.dart';
 import 'package:away/Logic/weather.dart';
@@ -27,6 +28,28 @@ Widget buildPlace(BuildContext context, InformationPlace place) {
 }
 
 Widget buildScaffold(Weather weather, BuildContext context, Position pos) {
+  final params = {
+    "distance": calculateDistancebetween2PointsBasedOnLatLon(pos.latitude,
+                pos.longitude, weather.latitude!, weather.longitude!)
+            .toString() +
+        "km",
+    "temperature": weather.tempFeelsLike!.toString(),
+    "cloudiness": weather.cloudiness.toString(),
+    "Humidity": weather.humidity.toString(),
+    "Pressure": weather.pressure.toString(),
+    "Rain recently?": weather.rainLast3Hours == null
+        ? "no"
+        : weather.rainLast3Hours.toString(),
+    "Snow recently": weather.snowLast3Hours == null
+        ? "no"
+        : weather.snowLast3Hours.toString(),
+    "Temperature range":
+        weather.tempMin.toString() + " - " + weather.tempMax.toString(),
+    "Weather description": weather.weatherDescription.toString(),
+    "Speed of wind:": weather.windSpeed.toString(),
+    "Wind direction": weather.windSpeed.toString()
+  };
+
   return Scaffold(
     appBar: AppBar(
       title: Text(weather.areaName!),
@@ -35,88 +58,8 @@ Widget buildScaffold(Weather weather, BuildContext context, Position pos) {
     body: Column(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("distance:"),
-            Text(calculateDistancebetween2PointsBasedOnLatLon(pos.latitude,pos.longitude, weather.latitude!, weather.longitude!).toString()+"km")
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("temperature:"),
-            Text(weather.tempFeelsLike!.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("cloudiness: "),
-            Text(weather.cloudiness.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("humidity:"),
-            Text(weather.humidity.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("pressure:"),
-            Text(weather.pressure.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("rain recently?:"),
-            weather.rainLast3Hours == null
-                ? const Text("no")
-                : Text(weather.rainLast3Hours.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("snow recently?:"),
-            weather.snowLast3Hours == null
-                ? const Text("no")
-                : Text(weather.snowLast3Hours.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("temperature range:"),
-            Text(
-                weather.tempMin.toString() + " - " + weather.tempMax.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("weather description: "),
-            Text(weather.weatherDescription.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("speed of wind:"),
-            Text(weather.windSpeed.toString())
-          ],
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            const Text("wind direction: "),
-            Text(weather.windDegree.toString())
-          ],
-        ),
+        for (var entries in params.entries)
+          ListEntry(text: entries.key, value: entries.value),
         googleMap(context, weather.latitude!, weather.longitude!, pos)
       ],
     ),
