@@ -7,7 +7,7 @@ class ListEntry extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [Text(text), Text(value)],
       );
 }

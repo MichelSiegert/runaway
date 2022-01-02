@@ -16,7 +16,7 @@ class HomePage extends StatelessWidget {
         title: const Text("Runaway"),
         backgroundColor: Colors.green,
       ),
-      body: const SizedBox.expand(child:FutureMenuBody()),
+      body:  SizedBox.expand(child:FutureMenuBody()),
       drawer: const Sidebar(),
       bottomNavigationBar: const BottomNavigationBarFuture(),
     );
