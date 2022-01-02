@@ -1,4 +1,4 @@
-import 'package:away/Pages/Login/login_scaffold.dart';
+import 'package:away/Pages/Login/future_login.dart';
 import 'package:flutter/material.dart';
 
 
@@ -10,6 +10,6 @@ class LoginPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return buildLogin(context);
+    return const FutureLogin();
   }
 }

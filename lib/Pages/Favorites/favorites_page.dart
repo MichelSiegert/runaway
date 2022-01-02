@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'favorites_scaffold.dart';
+import 'future_favorites.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({Key? key, required this.title}) : super(key: key);
@@ -9,6 +9,6 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return favoriteScaffold(title, context);
+    return  const FutureFavorite();
   }
 }
