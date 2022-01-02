@@ -16,23 +16,41 @@ class FutureLogin extends StatelessWidget {
             return Scaffold(
               drawer: const Sidebar(),
                 appBar: AppBar(
-                  title: const Text("runaway"),
+                  title: const Text("Runaway"),
                   backgroundColor: Colors.green,
                 ),
                 body: const LoginForm());
           } else if (snapshot.hasError) {
-            return const Text("A CRITICAL EROOR HAS OCCURED!");
+            return const Text("A CRITICAL ERROR HAS OCCURRED!");
           } else {
             return SizedBox.expand(
                 child: Container(
-                    color: Colors.white,
+                    color: Colors.lightGreen,
                     child: Center(
                         child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.center,
-                            children: const [
-                          CircularProgressIndicator(),
-                          Text("loading runaway")
+                            children: [
+                              const Text('Willkommen bei Runaway', textAlign: TextAlign.center,
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                shadows: [
+                                  Shadow(
+                                    blurRadius: 10.0,
+                                    color: Colors.blueGrey,
+                                    offset: Offset(5.0, 5.0),
+                                  ),
+                                  Shadow(
+                                    color: Colors.black26,
+                                    blurRadius: 10.0,
+                                    offset: Offset(-5.0, 5.0),
+                                  ),
+                                ],
+                                decoration: TextDecoration.none,
+                              )),
+                              Image.asset('lib/Images/RegenWolke.png'),
+                          const CircularProgressIndicator(),
                         ]))));
           }
         });
