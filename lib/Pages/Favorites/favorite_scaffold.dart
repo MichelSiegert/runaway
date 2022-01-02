@@ -15,51 +15,55 @@ class FavoriteScaffold extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: _createListOfFavoriteWeather(places),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            return Scaffold(
-              appBar: AppBar(
+      future: _createListOfFavoriteWeather(places),
+      builder: (context, snapshot) {
+        if (snapshot.hasData) {
+          return Scaffold(
+            appBar: AppBar(
               title: const Text("runaway"),
               backgroundColor: Colors.green,
             ),
-              body: SizedBox.expand(
-                child: ListView(
-                  children: snapshot.data as List<WeatherCard>,
-                ),
+            body: SizedBox.expand(
+              child: ListView(
+                children: snapshot.data as List<WeatherCard>,
               ),
-              drawer: const Sidebar(),
-            );
-          } else if (snapshot.hasError) {
-            return Text(snapshot.error.toString());
-          }
-          else {
-            return const LoadingScaffold();
-          }
+            ),
+            drawer: const Sidebar(),
+          );
+        } else if (snapshot.hasError) {
+          return Text(snapshot.error.toString());
+        }
+        else {
+          return const LoadingScaffold();
+        }
+      }
+
+      ,
+
+    );
   }
 
-  ,
+  Future<List<WeatherCard>> _createListOfFavoriteWeather(
+      List<String> favorites) async {
+    List<WeatherCard> cards = [];
 
-  );
-}
-
-Future<List<WeatherCard>> _createListOfFavoriteWeather(
-    List<String> favorites) async {
-  List<WeatherCard> cards = [];
-
-  for (String favorite in favorites) {
-    Weather weather = await getWeatherByName(favorite);
+    for (String favorite in favorites) {
+      final Weather weather = await getWeatherByName(favorite);
+      final bool isMetric = await (getSettings("unit")) == "metric";
     cards.add(WeatherCard(
-      informationPlace: InformationPlace(
-          lat: weather.latitude.toString(),
-          lon: weather.longitude.toString(),
-          place: favorite,
-          weather: weather.weatherDescription!,
-          temp: await (getSettings("unit")) == "metric"
-              ? weather.tempFeelsLike!.celsius!.round().toString()
-              : weather.tempFeelsLike!.fahrenheit!.round().toString()),
-      key: null,
+    informationPlace: InformationPlace(
+    lat: weather.latitude.toString(),
+    lon: weather.longitude.toString(),
+    place: favorite,
+    weather: weather.weatherDescription!,
+    temp: isMetric
+    ? weather.tempFeelsLike!.celsius!.round().toString()
+        : weather.tempFeelsLike!.fahrenheit!.round().toString(),
+      isMetric: isMetric
+    ),
+    key: null,
     ));
+    }
+    return cards;
   }
-  return cards;
-}}
+}

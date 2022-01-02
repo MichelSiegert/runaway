@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'information_place.dart';
 
-List<Widget> parse(Map<String, dynamic> json) {
+List<Widget> parse(Map<String, dynamic> json, String unit) {
   List<Widget> weatherCards = [];
   json.forEach((key, value) {
     if (key == "list") {
@@ -17,7 +17,8 @@ List<Widget> parse(Map<String, dynamic> json) {
               lat: values[1],
               lon: values[2],
               temp: values[3],
-              weather: values[4]),
+              weather: values[4],
+            isMetric: unit =="metric",),
         ));
       }
     }

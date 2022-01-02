@@ -10,7 +10,8 @@ import 'package:geolocator/geolocator.dart';
 import 'future_listview.dart';
 
 class FutureMenuBody extends StatelessWidget {
-  const FutureMenuBody({Key? key}) : super(key: key);
+   FutureMenuBody({Key? key}) : super(key: key);
+  late String unit;
 
   @override
   Widget build(BuildContext context) {
@@ -19,10 +20,11 @@ class FutureMenuBody extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Widget> weatherPlaces =
-              parse(snapshot.data as Map<String, dynamic>);
+              parse(snapshot.data as Map<String, dynamic>, unit);
           return FutureListview(places: weatherPlaces);
         } else if (snapshot.hasError) {
-          return Text("error in future_menu_body: "+snapshot.error.toString());
+          return Text(
+              "error in future_menu_body: " + snapshot.error.toString());
         } else if (!(snapshot.hasError || snapshot.hasData)) {
           return const LoadingScaffold();
         } else {
@@ -33,10 +35,10 @@ class FutureMenuBody extends StatelessWidget {
   }
 
   Future getWeather() async {
-    if(!await doesUserHaveSettings()) setupUser();
+    if (!await doesUserHaveSettings()) setupUser();
     Position pos = await getLongLat();
     String lang = await getSettings("lang");
-    String unit = await getSettings("/unit/");
+    unit = await getSettings("unit");
     return getWeatherInArea(pos.latitude, pos.longitude, lang, unit);
   }
 }

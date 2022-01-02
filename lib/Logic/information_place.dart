@@ -3,8 +3,9 @@ class InformationPlace {
   final String lat, lon;
   final String weather;
   final String temp;
+  final bool isMetric;
 
   // this class is for simply storing and passing data.
   const InformationPlace(
-      {required this.place, required this.lat, required this.lon, required this.weather, required this.temp});
+      {required this.isMetric,required this.place, required this.lat, required this.lon, required this.weather, required this.temp});
 }

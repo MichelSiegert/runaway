@@ -1,3 +1,4 @@
+import 'package:away/Logic/Database/settings.dart';
 import 'package:away/Logic/location.dart';
 import 'package:away/Logic/weather.dart';
 import 'package:away/Widgets/load_scaff.dart';
@@ -13,12 +14,13 @@ class BottomNavigationBarFuture extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-        future: getWeatherOfLocation(),
-        builder: (context, snapshot) {
+        future: Future.wait([getWeatherOfLocation(), getSettings("unit")]),
+        builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
           if (snapshot.hasData) {
-            Weather w = snapshot.data! as Weather;
-
-            return MenuFooter(weather: w);
+            Weather w = snapshot.data![0] as Weather;
+            String unit = snapshot.data![1];
+            bool isCelsius = unit=="metric";
+            return MenuFooter(weather: w, isCelsius: isCelsius);
           }
           else if (snapshot.hasError) {
             return Text(snapshot.error.toString());

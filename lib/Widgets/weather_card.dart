@@ -37,7 +37,7 @@ class _WeatherCardState extends State<WeatherCard> {
                         });
                       },
                       icon: const Icon(Icons.favorite),
-                      color: Colors.pink,
+                      color: Colors.green,
                     )
                   : IconButton(
                       onPressed: () {
@@ -47,7 +47,7 @@ class _WeatherCardState extends State<WeatherCard> {
                         });
                       },
                       icon: const Icon(Icons.favorite_border),
-                      color: Colors.pink,
+                      color: Colors.green,
                     );
             }
             return const Text("");
@@ -58,7 +58,7 @@ class _WeatherCardState extends State<WeatherCard> {
           mainAxisAlignment: MainAxisAlignment.center,
             children: [
           Text(widget.informationPlace.weather),
-          Text(widget.informationPlace.temp)
+          Text(widget.informationPlace.temp+(widget.informationPlace.isMetric? "°C":"°F"))
         ]),
         onTap: () {
           Navigator.pushNamed(context, "/onePlace",
