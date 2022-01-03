@@ -1,4 +1,5 @@
 import 'package:away/Logic/authentication.dart';
+import 'package:away/Widgets/loading_animation.dart';
 import 'package:flutter/material.dart';
 
 class RegisterForm extends StatelessWidget {
@@ -9,6 +10,7 @@ class RegisterForm extends StatelessWidget {
   @override
   Widget build(BuildContext context) => SizedBox.expand(
         child: Container(
+          padding: const EdgeInsets.all(10),
           alignment: Alignment.center,
           color: Colors.white,
           child: Column(
@@ -19,7 +21,7 @@ class RegisterForm extends StatelessWidget {
                 },
                 obscureText: false,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Username"),
+                    border: OutlineInputBorder(), labelText: "Email"),
               ),
               Container(
                 padding: const EdgeInsets.all(10),
@@ -32,13 +34,17 @@ class RegisterForm extends StatelessWidget {
                       border: OutlineInputBorder(), labelText: "Passwort"),
                 ),
               ),
-              TextButton(
+
+              ElevatedButton(
+                  style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+                  child: const Text("Register"),
                   onPressed: () async {
+                    loadingAnimation(context);
                     AuthService auth = AuthService();
                     await auth.register(mail, password);
                     Navigator.pushNamed(context, "/");
-                  },
-                  child: const Text("Register"))
+
+                  }),
             ],
           ),
         ),

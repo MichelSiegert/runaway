@@ -66,7 +66,7 @@ String _getTemp(Map<String, dynamic> weatherinfo) {
   String temp = "";
   weatherinfo.forEach((key, value) {
     if (key == "feels_like") {
-      temp = value.toString();
+      temp = value.toStringAsFixed(0);
     }
   });
   return temp;

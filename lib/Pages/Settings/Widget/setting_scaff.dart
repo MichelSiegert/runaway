@@ -15,7 +15,7 @@ class SettingScaffold extends StatelessWidget {
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(
           title: const Text("Runaway"),
-          backgroundColor: Colors.green,
+          backgroundColor: Colors.blueGrey[900],
         ),
         //Text in the middle of the page
         body: Container(
