@@ -5,9 +5,13 @@
 String translateStringtoBinary(String input) {
   String text = "";
   for (int i = 0; i < input.length; i++) {
-    text += input.codeUnitAt(i).toRadixString(2) + " ";
+    String toBin = input.codeUnitAt(i).toRadixString(2) + " ";
+    while (toBin.length < 9) {
+      toBin = "0"+toBin;
+    }
+    text += toBin;
   }
-  return text;
+  return text.trim();
 }
 
 String translateStringToMoseCode(String input) {
@@ -15,7 +19,7 @@ String translateStringToMoseCode(String input) {
   for (int i = 0; i < input.length; i++) {
     text += morseCodeOf(input[i].toLowerCase());
   }
-  return text;
+  return text.trim();
 }
 
 String morseCodeOf(String letter) {
@@ -69,9 +73,9 @@ String morseCodeOf(String letter) {
     case "x":
       return "-..- ";
     case "y":
-      return "-. ";
+      return "-.-- ";
     case "z":
-      return "-- ";
+      return "--.. ";
     case "0":
       return "----- ";
     case "1":
@@ -92,6 +96,13 @@ String morseCodeOf(String letter) {
       return "---.. ";
     case "9":
       return "----. ";
+    case " ":
+      return "/ ";
+    case ",":
+      return "--..-- ";
+    case ".":
+      return ".-.-.- ";
+    default:
+      return letter;
   }
-  return "";
 }
