@@ -22,7 +22,7 @@ class PlaceScaff extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final params = {
-      "distance: ": calculateDistancebetween2PointsBasedOnLatLon(pos.latitude,
+      "distance: ": calculateDistanceBetween2PointsBasedOnLatLon(pos.latitude,
                   pos.longitude, weather.latitude!, weather.longitude!)
               .toString() +
           "km",

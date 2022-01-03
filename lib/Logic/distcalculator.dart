@@ -1,6 +1,6 @@
 import 'dart:math';
 
-double calculateDistancebetween2PointsBasedOnLatLon(double lat1, double lon1, double lat2, double lon2)
+double calculateDistanceBetween2PointsBasedOnLatLon(double lat1, double lon1, double lat2, double lon2)
 {
   var p = 0.017453292519943295;
   var c = cos;
