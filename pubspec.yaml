@@ -51,6 +51,12 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_launcher_icons: ^0.9.2
+
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "lib/Images/regen_wolke.png"
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -65,7 +71,7 @@ dev_dependencies:
 # The following section is specific to Flutter.
 flutter:
   assets:
-    - lib/Images/RegenWolke.png
+    - lib/Images/regen_wolke.png
 
 
   # The following line ensures that the Material Icons font is
