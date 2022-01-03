@@ -31,7 +31,8 @@ class FutureLogin extends StatelessWidget {
                             navigateAfterSeconds: const AfterSplash(),
                             title: const Text('Willkommen bei Runaway',textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0)),
                             image: Image.asset(
-                              'lib/Images/regen_wolke.png', height: double.infinity, width: double.infinity),
+                              'lib/Images/regen_wolke.png'),
+                            photoSize: 150.0,
                             backgroundColor: Colors.blueGrey[900],
                             loaderColor: Colors.blue,
                           )));
