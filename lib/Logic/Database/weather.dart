@@ -19,7 +19,7 @@ void tapWeatherCardToDataBase(String place) async {
   }
 }
 
-Future isThisPlaceAFavoriteOfUser(String place) async {
+Future isThisPlaceAFavoriteOfUser(String place, bool isFavorite) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
   final String uid = FirebaseAuth.instance.currentUser!.uid;
   final DatabaseReference reference =
