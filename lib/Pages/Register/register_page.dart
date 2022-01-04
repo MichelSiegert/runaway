@@ -16,6 +16,7 @@ class RegisterPage extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Colors.blueGrey[900],
         title: Text(s),
       ),
       body:RegisterForm()

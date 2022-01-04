@@ -55,7 +55,7 @@ class PlaceScaff extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(weather.areaName!),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blueGrey[900],
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,

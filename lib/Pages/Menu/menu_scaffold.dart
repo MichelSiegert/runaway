@@ -14,7 +14,7 @@ class HomePage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Runaway"),
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.blueGrey[900],
       ),
       body:  SizedBox.expand(child:FutureMenuBody()),
       drawer: const Sidebar(),

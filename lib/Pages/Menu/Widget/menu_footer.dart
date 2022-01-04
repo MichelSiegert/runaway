@@ -15,20 +15,20 @@ class MenuFooter extends StatelessWidget {
       style: const TextStyle(color: Colors.white,
       fontWeight: FontWeight.bold),
         child: Container(
-      color: Colors.green,
+      color: Colors.blueGrey[900],
         child: SizedBox(
       width: calculateWidth(1, context),
       height: calculateWidth(0.15, context),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
+        //crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [
           Text(weather.areaName!),
-          Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
+          Row(mainAxisAlignment: MainAxisAlignment.spaceAround, children: [
             const Text("Temperature"),
             Text(isCelsius
-                ? weather.tempFeelsLike!.celsius.toString() + "°C"
-                : weather.tempFeelsLike!.fahrenheit.toString() + "°F")
+                ? weather.tempFeelsLike!.celsius!.toStringAsFixed(0) + "°C"
+                : weather.tempFeelsLike!.fahrenheit!.toStringAsFixed(0) + "°F")
           ]),
           Row(mainAxisAlignment: MainAxisAlignment.spaceEvenly, children: [
             const Text("Weather"),

@@ -10,7 +10,7 @@ class Sidebar extends StatelessWidget {
     final List<Widget> elemente = [];
     elemente.add(const DrawerHeader(
       decoration: BoxDecoration(
-        color: Colors.green,
+        color: Colors.blueGrey,
       ),
       child: Text('Menü'),
     ));

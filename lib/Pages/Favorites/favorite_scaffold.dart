@@ -21,7 +21,7 @@ class FavoriteScaffold extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               title: const Text("runaway"),
-              backgroundColor: Colors.green,
+              backgroundColor: Colors.blueGrey[900],
             ),
             body: SizedBox.expand(
               child: ListView(
