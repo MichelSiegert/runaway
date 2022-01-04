@@ -11,16 +11,15 @@ import 'future_listview.dart';
 
 class FutureMenuBody extends StatelessWidget {
    FutureMenuBody({Key? key}) : super(key: key);
-  late String unit;
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: getWeather(),
-      builder: (context, snapshot) {
+      future: Future.wait([getWeather(), getSettings("unit") ]),
+      builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.hasData) {
           List<Widget> weatherPlaces =
-              parse(snapshot.data as Map<String, dynamic>, unit);
+              parse(snapshot.data![0] as Map<String, dynamic>, snapshot.data![1]);
           return FutureListview(places: weatherPlaces);
         } else if (snapshot.hasError) {
           return Text(
@@ -38,7 +37,7 @@ class FutureMenuBody extends StatelessWidget {
     if (!await doesUserHaveSettings()) setupUser();
     Position pos = await getLongLat();
     String lang = await getSettings("lang");
-    unit = await getSettings("unit");
+    String unit = await getSettings("unit");
     return getWeatherInArea(pos.latitude, pos.longitude, lang, unit);
   }
 }

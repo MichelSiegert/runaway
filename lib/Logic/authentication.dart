@@ -1,6 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
+import 'Database/settings.dart';
+
 //this class solves every issue regarding login and registration.
 
 class AuthService {
@@ -10,6 +12,7 @@ class AuthService {
     try {
       final UserCredential result = await _auth.signInAnonymously();
       final User? user = result.user;
+      generateSettings();
       return user;
     } catch (e) {
       print(e.toString());
@@ -19,8 +22,10 @@ class AuthService {
 
   Future login(final String email, final String password) async {
     try {
-      return await _auth.signInWithEmailAndPassword(
+      UserCredential user = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
+      generateSettings();
+      return user;
     } on FirebaseAuthException catch (e) {
       if (e.code == "user-not-found") {
         return "No user with such an email!";
@@ -67,6 +72,15 @@ class AuthService {
     );
 
     // Once signed in, return the UserCredential
-    return await FirebaseAuth.instance.signInWithCredential(credential);
+    UserCredential user =
+        await FirebaseAuth.instance.signInWithCredential(credential);
+    setupUser();
+    return user;
+  }
+
+  void generateSettings() async {
+    if (!await doesUserExist()) {
+      setupUser();
+    }
   }
 }
