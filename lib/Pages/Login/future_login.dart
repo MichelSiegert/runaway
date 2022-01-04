@@ -14,7 +14,6 @@ class FutureLogin extends StatelessWidget {
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.done) {
             return Scaffold(
-                drawer: const Sidebar(),
                 appBar: AppBar(
                   title: const Text("Runaway"),
                   backgroundColor: Colors.blueGrey[900],
