@@ -4,50 +4,49 @@ import 'package:flutter/material.dart';
 
 class RegisterForm extends StatelessWidget {
   RegisterForm({Key? key}) : super(key: key);
-  String password = "";
-  String mail = "";
 
   @override
-  Widget build(BuildContext context) => SizedBox.expand(
-        child: Container(
-          padding: const EdgeInsets.all(10),
-          alignment: Alignment.center,
-          color: Colors.white,
-          child: Column(
-            children: [
-              TextField(
-                onChanged: (text) {
-                  mail = text;
-                },
-                obscureText: false,
+  Widget build(BuildContext context) {
+    TextEditingController textCon = TextEditingController();
+    TextEditingController passCon = TextEditingController();
+    return SizedBox.expand(
+      child: Container(
+        padding: const EdgeInsets.all(10),
+        alignment: Alignment.center,
+        color: Colors.white,
+        child: Column(
+          children: [
+            TextField(
+              onChanged: (text) {
+              },
+              controller: textCon,
+              obscureText: false,
+              decoration: const InputDecoration(
+                  border: OutlineInputBorder(), labelText: "Email"),
+            ),
+            Container(
+              padding: const EdgeInsets.all(10),
+              child: TextField(
+                obscureText: true,
                 decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Email"),
+                    border: OutlineInputBorder(), labelText: "Passwort"),
+                controller: passCon,
               ),
-              Container(
-                padding: const EdgeInsets.all(10),
-                child: TextField(
-                  onChanged: (text) {
-                    password = text;
-                  },
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                      border: OutlineInputBorder(), labelText: "Passwort"),
-                ),
-              ),
-              ElevatedButton(
-                  style:
-                      ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-                  child: const Text("Register"),
-                  onPressed: () async {
-                    showDialog(
-                        context: context,
-                        builder: (BuildContext context) => LoadingDialog());
-                    AuthService auth = AuthService();
-                    await auth.register(mail, password);
-                    Navigator.pushNamed(context, "/");
-                  }),
-            ],
-          ),
+            ),
+            ElevatedButton(
+                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+                child: const Text("Register"),
+                onPressed: () async {
+                  showDialog(
+                      context: context,
+                      builder: (BuildContext context) => LoadingDialog());
+                  AuthService auth = AuthService();
+                  await auth.register(textCon.text, passCon.text);
+                  Navigator.pushNamed(context, "/");
+                }),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }

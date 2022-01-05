@@ -3,15 +3,17 @@ import 'package:flutter/material.dart';
 
 class Languages extends StatefulWidget {
   Languages(this.dropdownValue, {Key? key}) : super(key: key);
-  String dropdownValue;
+  final dropdownValue;
 
   @override
   LanguagesState createState() => LanguagesState();
 }
 
 class LanguagesState extends State<Languages> {
+  String? dropdownValue;
   @override
   Widget build(BuildContext context) {
+    dropdownValue ??= widget.dropdownValue;
     return DropdownButton<String>(
       value: widget.dropdownValue,
       //TODO this solution has to be better.
@@ -37,8 +39,7 @@ class LanguagesState extends State<Languages> {
         //TODO setSettings is for db, rename
         setSettings("lang", newVal!);
         setState(() {
-          widget.dropdownValue = newVal;
-
+          dropdownValue = newVal;
         });
       },
     );

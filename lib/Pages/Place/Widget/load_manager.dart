@@ -19,7 +19,11 @@ class LoadManager extends StatelessWidget {
         if (snapshot.hasData) {
           Weather weather = snapshot.data![0] as Weather;
           Position pos = snapshot.data![1] as Position;
-          return PlaceScaff(weather: weather, pos: pos, isMetric: place.isMetric,);
+          return PlaceScaff(
+            weather: weather,
+            pos: pos,
+            isMetric: place.isMetric,
+          );
         } else if (snapshot.hasError) {
           return Center(child: Text(snapshot.error as String));
         } else if (!(snapshot.hasData || snapshot.hasError)) {

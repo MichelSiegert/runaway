@@ -1,7 +1,6 @@
 import 'package:away/Logic/authentication.dart';
 import 'package:away/Widgets/loading_animation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
