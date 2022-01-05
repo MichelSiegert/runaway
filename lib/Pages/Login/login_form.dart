@@ -7,12 +7,10 @@ import 'package:flutter_signin_button/button_list.dart';
 import 'package:flutter_signin_button/button_view.dart';
 
 class LoginForm extends StatelessWidget {
-
   const LoginForm({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    
     String email = "", password = "";
     final AuthService _authent = AuthService();
     final List<Widget> elements = [];
@@ -43,7 +41,9 @@ class LoginForm extends StatelessWidget {
           style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
           child: const Text("login"),
           onPressed: () async {
-            loadingAnimation(context);
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => LoadingDialog());
 
             final user = await _authent.login(email, password);
             Navigator.pop(context); //pop dialog
@@ -61,7 +61,9 @@ class LoginForm extends StatelessWidget {
           style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
           child: const Text("login anonymously"),
           onPressed: () async {
-            loadingAnimation(context);
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => LoadingDialog());
             User? user = await _authent.signInAnon();
             Navigator.pop(context);
             if (user == null) {
@@ -74,13 +76,12 @@ class LoginForm extends StatelessWidget {
       ),
       Container(
         padding: const EdgeInsets.all(10),
-         child: ElevatedButton(
+        child: ElevatedButton(
             child: const Text("No Account? Register here!"),
             style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
             onPressed: () {
               Navigator.pushNamed(context, "/register");
-            }
-          ),
+            }),
       ),
       SignInButton(
         Buttons.GoogleDark,
@@ -94,7 +95,9 @@ class LoginForm extends StatelessWidget {
               Navigator.pushNamed(context, "/menu");
             }
           });
-          loadingAnimation(context);
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => LoadingDialog());
         },
       ),
     ]));
@@ -104,14 +107,13 @@ class LoginForm extends StatelessWidget {
         child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: elements
-        ),
+            children: elements),
       ),
     );
   }
 }
-showAlertDialog(BuildContext context) {
 
+showAlertDialog(BuildContext context) {
   Widget okButton = TextButton(
     child: const Text("OK"),
     onPressed: () {
@@ -119,7 +121,8 @@ showAlertDialog(BuildContext context) {
     },
   );
   AlertDialog alert = AlertDialog(
-    title: const Text("Something went wrong!", style: TextStyle(color: Colors.red)),
+    title: const Text("Something went wrong!",
+        style: TextStyle(color: Colors.red)),
     actions: [
       okButton,
     ],

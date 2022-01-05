@@ -34,16 +34,17 @@ class RegisterForm extends StatelessWidget {
                       border: OutlineInputBorder(), labelText: "Passwort"),
                 ),
               ),
-
               ElevatedButton(
-                  style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+                  style:
+                      ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
                   child: const Text("Register"),
                   onPressed: () async {
-                    loadingAnimation(context);
+                    showDialog(
+                        context: context,
+                        builder: (BuildContext context) => LoadingDialog());
                     AuthService auth = AuthService();
                     await auth.register(mail, password);
                     Navigator.pushNamed(context, "/");
-
                   }),
             ],
           ),

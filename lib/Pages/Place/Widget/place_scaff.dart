@@ -1,5 +1,5 @@
 import 'package:away/Logic/distcalculator.dart';
-import 'package:away/Widgets/googlemaps.dart';
+import 'package:away/Pages/Place/Widget/googlemaps.dart';
 import 'package:away/Widgets/sidebar/sidebar.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
@@ -62,7 +62,8 @@ class PlaceScaff extends StatelessWidget {
         children: [
           for (var entries in params.entries)
             ListEntry(text: entries.key, value: entries.value),
-          googleMap(context, weather.latitude!, weather.longitude!, pos)
+          GoogleMapWidget(
+              lat: weather.latitude!, lon: weather.longitude!, myPos: pos)
         ],
       ),
       drawer: const Sidebar(),

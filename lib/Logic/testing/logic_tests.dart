@@ -1,6 +1,8 @@
 import 'package:away/Logic/esoLang/eso_lang.dart';
-import 'package:away/Widgets/googlemaps.dart';
+import 'package:away/Pages/Place/Widget/googlemaps.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:geolocator/geolocator.dart';
 
 import '../distcalculator.dart';
 
@@ -39,7 +41,7 @@ void main() {
   });
 
   test("Evaluating the bounds of a map!", () {
-    var res = calcBounds(420, 42, 3.14, 9000);
+    var res = GoogleMapWidget(lat: 10, lon: 10, myPos: Position(latitude: 10, longitude: 10, speedAccuracy: 2,accuracy: 1,altitude: 1,heading: 1,speed: 1,floor: 1,isMocked: true,timestamp: Timestamp.now().toDate())).calcBounds(420, 42, 3.14, 9000);
     expect(res, allOf([contains(3.14), contains(42)]));
   });
 
