@@ -17,8 +17,7 @@ class RegisterForm extends StatelessWidget {
         child: Column(
           children: [
             TextField(
-              onChanged: (text) {
-              },
+              onChanged: (text) {},
               controller: textCon,
               obscureText: false,
               decoration: const InputDecoration(

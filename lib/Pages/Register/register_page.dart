@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'form.dart';
 
 class RegisterPage extends StatelessWidget {
-   const RegisterPage({Key? key, required this.title}) : super(key: key);
+  const RegisterPage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -13,13 +13,11 @@ class RegisterPage extends StatelessWidget {
   }
 
   Scaffold registerScaffold(String s, BuildContext context) {
-
     return Scaffold(
-      appBar: AppBar(
-        backgroundColor: Colors.blueGrey[900],
-        title: Text(s),
-      ),
-      body:RegisterForm()
-    );
+        appBar: AppBar(
+          backgroundColor: Colors.blueGrey[900],
+          title: Text(s),
+        ),
+        body: RegisterForm());
   }
 }

@@ -10,16 +10,16 @@ import 'package:geolocator/geolocator.dart';
 import 'future_listview.dart';
 
 class FutureMenuBody extends StatelessWidget {
-   FutureMenuBody({Key? key}) : super(key: key);
+  FutureMenuBody({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return FutureBuilder(
-      future: Future.wait([getWeather(), getSettings("unit") ]),
+      future: Future.wait([getWeather(), getSettings("unit")]),
       builder: (context, AsyncSnapshot<List<dynamic>> snapshot) {
         if (snapshot.hasData) {
-          List<Widget> weatherPlaces =
-              parse(snapshot.data![0] as Map<String, dynamic>, snapshot.data![1]);
+          List<Widget> weatherPlaces = parse(
+              snapshot.data![0] as Map<String, dynamic>, snapshot.data![1]);
           return FutureListview(places: weatherPlaces);
         } else if (snapshot.hasError) {
           return Text(
