@@ -27,7 +27,9 @@ class LoadManager extends StatelessWidget {
         } else if (snapshot.hasError) {
           return Center(child: Text(snapshot.error as String));
         } else if (!(snapshot.hasData || snapshot.hasError)) {
-          return const Center(child: CircularProgressIndicator());
+          return Container(
+              color: Colors.white,
+              child: const Center(child: CircularProgressIndicator()));
         } else {
           return const Text("forgot to take care of this case?");
         }
