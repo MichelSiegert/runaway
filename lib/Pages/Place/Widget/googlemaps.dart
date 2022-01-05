@@ -1,4 +1,5 @@
 import 'package:away/Logic/screen_size_calculator.dart';
+import 'package:away/Widgets/load_scaff.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 import "package:google_maps_flutter/google_maps_flutter.dart";
@@ -48,9 +49,10 @@ class GoogleMapWidget extends StatelessWidget {
             );
           } else if (snapshot.hasError) {
             return Text(snapshot.error.toString());
-          } else {
-            return const Text("forgot to catch this case!");
-          }
+          } else if(!(snapshot.hasData || snapshot.hasError)){
+            return LoadingScaffold();
+          }else{
+            return const Text("forgot to catch this case!");}
         });
   }
 
