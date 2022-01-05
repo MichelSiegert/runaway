@@ -13,7 +13,7 @@ class FutureSettings extends StatelessWidget {
           if (snapshot.hasData) {
             String inputs = snapshot.data as String;
             var seperated = inputs.split(";");
-            return SettingScaffold(settings:  seperated);
+            return SettingScaffold(settings: seperated);
           } else {
             return const LoadingScaffold();
           }

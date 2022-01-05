@@ -7,5 +7,10 @@ class InformationPlace {
 
   // this class is for simply storing and passing data.
   const InformationPlace(
-      {required this.isMetric,required this.place, required this.lat, required this.lon, required this.weather, required this.temp});
+      {required this.isMetric,
+      required this.place,
+      required this.lat,
+      required this.lon,
+      required this.weather,
+      required this.temp});
 }

@@ -32,14 +32,10 @@ class FavoriteScaffold extends StatelessWidget {
           );
         } else if (snapshot.hasError) {
           return Text(snapshot.error.toString());
-        }
-        else {
+        } else {
           return const LoadingScaffold();
         }
-      }
-
-      ,
-
+      },
     );
   }
 
@@ -50,19 +46,18 @@ class FavoriteScaffold extends StatelessWidget {
     for (String favorite in favorites) {
       final Weather weather = await getWeatherByName(favorite);
       final bool isMetric = await (getSettings("unit")) == "metric";
-    cards.add(WeatherCard(
-    informationPlace: InformationPlace(
-    lat: weather.latitude.toString(),
-    lon: weather.longitude.toString(),
-    place: favorite,
-    weather: weather.weatherDescription!,
-    temp: isMetric
-    ? weather.tempFeelsLike!.celsius!.round().toString()
-        : weather.tempFeelsLike!.fahrenheit!.round().toString(),
-      isMetric: isMetric
-    ),
-    key: null,
-    ));
+      cards.add(WeatherCard(
+        informationPlace: InformationPlace(
+            lat: weather.latitude.toString(),
+            lon: weather.longitude.toString(),
+            place: favorite,
+            weather: weather.weatherDescription!,
+            temp: isMetric
+                ? weather.tempFeelsLike!.celsius!.round().toString()
+                : weather.tempFeelsLike!.fahrenheit!.round().toString(),
+            isMetric: isMetric),
+        key: null,
+      ));
     }
     return cards;
   }

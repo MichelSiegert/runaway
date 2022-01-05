@@ -13,12 +13,13 @@ List<Widget> parse(Map<String, dynamic> json, String unit) {
         weatherCards.add(WeatherCard(
           key: null,
           informationPlace: InformationPlace(
-              place: values[0],
-              lat: values[1],
-              lon: values[2],
-              temp: values[3],
-              weather: values[4],
-            isMetric: unit =="metric",),
+            place: values[0],
+            lat: values[1],
+            lon: values[2],
+            temp: values[3],
+            weather: values[4],
+            isMetric: unit == "metric",
+          ),
         ));
       }
     }

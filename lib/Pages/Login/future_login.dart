@@ -1,4 +1,3 @@
-import 'package:away/Widgets/sidebar/sidebar.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:splashscreen/splashscreen.dart';
@@ -26,15 +25,17 @@ class FutureLogin extends StatelessWidget {
                 child: Container(
                     color: Colors.blueGrey[900],
                     child: SplashScreen(
-                            seconds: 14,
-                            navigateAfterSeconds: const AfterSplash(),
-                            title: const Text('Willkommen bei Runaway',textAlign: TextAlign.center, style: TextStyle(fontWeight: FontWeight.bold, fontSize: 40.0)),
-                            image: Image.asset(
-                              'lib/Images/regen_wolke.png'),
-                            photoSize: 150.0,
-                            backgroundColor: Colors.blueGrey[900],
-                            loaderColor: Colors.blue,
-                          )));
+                      seconds: 14,
+                      navigateAfterSeconds: const AfterSplash(),
+                      title: const Text('Willkommen bei Runaway',
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              fontWeight: FontWeight.bold, fontSize: 40.0)),
+                      image: Image.asset('lib/Images/regen_wolke.png'),
+                      photoSize: 150.0,
+                      backgroundColor: Colors.blueGrey[900],
+                      loaderColor: Colors.blue,
+                    )));
           }
         });
   }

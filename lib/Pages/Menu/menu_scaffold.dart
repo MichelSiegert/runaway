@@ -6,8 +6,6 @@ import 'Widget/foot_future.dart';
 
 class HomePage extends StatelessWidget {
   HomePage({Key? key}) : super(key: key);
-  double? myLoc;
-  late bool inCelsius;
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +14,9 @@ class HomePage extends StatelessWidget {
         title: const Text("Runaway"),
         backgroundColor: Colors.blueGrey[900],
       ),
-      body:  SizedBox.expand(child:FutureMenuBody()),
+      body: SizedBox.expand(child: FutureMenuBody()),
       drawer: const Sidebar(),
       bottomNavigationBar: const BottomNavigationBarFuture(),
     );
   }
-
 }
-

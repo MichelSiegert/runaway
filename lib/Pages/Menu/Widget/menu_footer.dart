@@ -17,9 +17,9 @@ class MenuFooter extends StatelessWidget {
         child: Container(
       color: Colors.blueGrey[900],
         child: SizedBox(
-      width: calculateWidth(1, context),
-      height: calculateWidth(0.15, context),
-      child: Column(
+              width: calculateWidth(1, context),
+              height: calculateWidth(0.15, context),
+              child: Column(
         //crossAxisAlignment: CrossAxisAlignment.center,
         mainAxisAlignment: MainAxisAlignment.spaceEvenly,
         children: [

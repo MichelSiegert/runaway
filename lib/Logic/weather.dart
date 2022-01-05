@@ -16,8 +16,6 @@ Future<Weather> getWeatherByLatLon(double lat, double lon) async {
   return weather;
 }
 
-
-
 Future<Weather> getWeatherByName(String name) async {
   final WeatherFactory wf = await (getSettings("lang")) == "de"
       ? WeatherFactory("1c1a1b5bc5706b35790855762fe5b8c3",
@@ -28,8 +26,8 @@ Future<Weather> getWeatherByName(String name) async {
   return weather;
 }
 
-Future getWeatherInArea(final double lat, final double lon, final String language,
-    String units) async {
+Future getWeatherInArea(final double lat, final double lon,
+    final String language, String units) async {
   const int num = MenuPage.numEntries;
   final url = Uri.parse(
       "https://api.openweathermap.org/data/2.5/find?lat=$lat&lon=$lon&cnt=$num&appid=1c1a1b5bc5706b35790855762fe5b8c3&units=$units&lang=$language");
