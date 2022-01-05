@@ -16,7 +16,7 @@ class UnitSystemsState extends State<UnitSystems> {
   Widget build(BuildContext context) {
     dropdownValue ??= widget.dropdownValue;
     return DropdownButton<String>(
-      value: widget.dropdownValue,
+      value: dropdownValue,
       items: {"Celsius": "metric", "Fahrenheit": "imperial"}
           .map((description, value) => MapEntry(
               description,
