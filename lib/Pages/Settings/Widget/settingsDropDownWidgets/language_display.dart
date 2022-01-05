@@ -17,7 +17,7 @@ class DropDownLanguageState extends State<DropDownLanguage> {
   Widget build(BuildContext context) {
     dropdownValue ??= widget.dropdownValue;
     return DropdownButton<String>(
-      value: widget.dropdownValue,
+      value: dropdownValue,
       items: {"Latin": "lat", "binary": "bin", "morsecode": "mor"}
           .map(
             (description, value) => MapEntry(

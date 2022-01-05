@@ -16,7 +16,7 @@ class LanguagesState extends State<Languages> {
   Widget build(BuildContext context) {
     dropdownValue ??= widget.dropdownValue;
     return DropdownButton<String>(
-      value: widget.dropdownValue,
+      value: dropdownValue,
       //TODO this solution has to be better.
       items: {
         "Latinus": "lt",
