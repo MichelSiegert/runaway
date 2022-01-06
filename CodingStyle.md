@@ -4,7 +4,7 @@ To ensure the quality and maintainability of code we have decided on a style gui
 For Dart: 
 
 - Classes, enum types, typedefs, and type parameters should capitalize the first letter of each word (including the first word), and use no separators.
-- to make testing easier as well as increase the efficiency of the Programm, variables, functions and Constructors should be const or final when possible.
+- to make testing easier as well as increase the efficiency of the program, variables, functions and constructors should be const or final when possible.
 - we value Classes over methods for Widgets.
 - name extensions use UpperCamelCase.
 - libraries, packages, directories, and source files should be lowercase_with_underscores.
