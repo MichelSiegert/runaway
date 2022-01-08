@@ -2,7 +2,7 @@ import 'package:away/Logic/Database/settings.dart';
 import 'package:flutter/material.dart';
 
 class Languages extends StatefulWidget {
-  Languages(this.dropdownValue, {Key? key}) : super(key: key);
+  const Languages(this.dropdownValue, {Key? key}) : super(key: key);
   final dropdownValue;
 
   @override
@@ -17,7 +17,6 @@ class LanguagesState extends State<Languages> {
     dropdownValue ??= widget.dropdownValue;
     return DropdownButton<String>(
       value: dropdownValue,
-      //TODO this solution has to be better.
       items: {
         "Latinus": "lt",
         "Deutsch": "de",

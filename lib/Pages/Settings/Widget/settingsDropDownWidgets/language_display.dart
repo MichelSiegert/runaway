@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class DropDownLanguage extends StatefulWidget {
   final String dropdownValue;
 
-  DropDownLanguage(this.dropdownValue, {Key? key}) : super(key: key);
+  const DropDownLanguage(this.dropdownValue, {Key? key}) : super(key: key);
 
   @override
   DropDownLanguageState createState() => DropDownLanguageState();

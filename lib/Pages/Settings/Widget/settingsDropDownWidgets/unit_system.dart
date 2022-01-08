@@ -2,7 +2,7 @@ import 'package:away/Logic/Database/settings.dart';
 import 'package:flutter/material.dart';
 
 class UnitSystems extends StatefulWidget {
-  UnitSystems(this.dropdownValue, {Key? key}) : super(key: key);
+  const UnitSystems(this.dropdownValue, {Key? key}) : super(key: key);
   final String dropdownValue;
 
   @override
