@@ -29,7 +29,6 @@ class UnitSystemsState extends State<UnitSystems> {
       onChanged: (String? newVal) {
         setSettings("unit", newVal!);
         setState(() {
-          //TODO hier muss noch das in die DB gespeichert werden.
           dropdownValue = newVal;
         });
       },
