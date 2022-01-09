@@ -36,7 +36,6 @@ class LanguagesState extends State<Languages> {
           .values
           .toList(),
       onChanged: (String? newVal) {
-        //TODO setSettings is for db, rename
         setSettings("lang", newVal!);
         setState(() {
           dropdownValue = newVal;
