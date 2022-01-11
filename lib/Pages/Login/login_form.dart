@@ -1,4 +1,5 @@
 import 'package:away/Logic/authentication.dart';
+import 'package:away/Logic/screen_size_calculator.dart';
 import 'package:away/Widgets/loading_animation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -15,20 +16,21 @@ class LoginForm extends StatelessWidget {
     final AuthService _authent = AuthService();
     final List<Widget> elements = [];
 
-    elements.add( Padding(
-      padding: const EdgeInsets.fromLTRB(0,4,0,4),
-      child: TextField(
-            controller: textCon,
-            obscureText: false,
-            decoration: const InputDecoration(
-                border: OutlineInputBorder(), labelText: "Email"),
-          ),
-    ),
+    elements.add(
+      Padding(
+        padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+        child: TextField(
+          controller: textCon,
+          obscureText: false,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(), labelText: "Email"),
+        ),
+      ),
     );
 
     elements.add(
       Padding(
-        padding: const EdgeInsets.fromLTRB(0,4,0,4),
+        padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
         child: TextField(
           obscureText: true,
           decoration: const InputDecoration(
@@ -97,11 +99,14 @@ class LoginForm extends StatelessWidget {
       ),
     ]));
 
-    return SizedBox.expand(
-      child: Center(
+    return Center(
+      child: SizedBox(
+        width: calculateWidth(1, context),
+        height: calculateHeight(0.7, context),
         child: Padding(
           padding: EdgeInsets.all(16),
-          child: ListView(children: elements),
+          child: ListView(children: elements,
+          ),
         ),
       ),
     );
