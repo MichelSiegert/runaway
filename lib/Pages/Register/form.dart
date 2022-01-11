@@ -10,41 +10,37 @@ class RegisterForm extends StatelessWidget {
     TextEditingController textCon = TextEditingController();
     TextEditingController passCon = TextEditingController();
     return SizedBox.expand(
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        alignment: Alignment.center,
-        color: Colors.white,
-        child: Column(
-          children: [
-            TextField(
-              onChanged: (text) {},
-              controller: textCon,
-              obscureText: false,
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          TextField(
+            onChanged: (text) {},
+            controller: textCon,
+            obscureText: false,
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: "Email"),
+          ),
+          Container(
+            child: TextField(
+              obscureText: true,
               decoration: const InputDecoration(
-                  border: OutlineInputBorder(), labelText: "Email"),
+                  border: OutlineInputBorder(), labelText: "Passwort"),
+              controller: passCon,
             ),
-            Container(
-              padding: const EdgeInsets.all(10),
-              child: TextField(
-                obscureText: true,
-                decoration: const InputDecoration(
-                    border: OutlineInputBorder(), labelText: "Passwort"),
-                controller: passCon,
-              ),
-            ),
-            ElevatedButton(
-                style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-                child: const Text("Register"),
-                onPressed: () async {
-                  showDialog(
-                      context: context,
-                      builder: (BuildContext context) => LoadingDialog());
-                  AuthService auth = AuthService();
-                  await auth.register(textCon.text, passCon.text);
-                  Navigator.pushNamed(context, "/");
-                }),
-          ],
-        ),
+          ),
+          ElevatedButton(
+              style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+              child: const Text("Register"),
+              onPressed: () async {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) => LoadingDialog());
+                AuthService auth = AuthService();
+                await auth.register(textCon.text, passCon.text);
+                Navigator.pushNamed(context, "/");
+              }),
+        ],
       ),
     );
   }
