@@ -25,7 +25,7 @@ class _WeatherCardState extends State<WeatherCard> {
     return ListTile(
         leading: FutureBuilder(
           future: isThisPlaceAFavoriteOfUser(
-              widget.informationPlace.place, isFavorite),
+              widget.informationPlace.place),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               isFavorite = snapshot.data as bool;
