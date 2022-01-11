@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
+import 'package:flutter/material.dart';
 
 //this code is necessary for saving and loading favorite places of the user.
 // it does reading and writing.
@@ -18,7 +19,7 @@ void tapWeatherCardToDataBase(String place) async {
   }
 }
 
-Future isThisPlaceAFavoriteOfUser(String place, bool isFavorite) async {
+Future isThisPlaceAFavoriteOfUser(String place) async {
   final DatabaseReference database = FirebaseDatabase.instance.ref();
   final String uid = FirebaseAuth.instance.currentUser!.uid;
   final DatabaseReference reference =
