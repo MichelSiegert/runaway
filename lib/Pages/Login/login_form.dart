@@ -10,14 +10,13 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String email = "", password = "";
+    TextEditingController textCon = TextEditingController();
+    TextEditingController passCon = TextEditingController();
     final AuthService _authent = AuthService();
     final List<Widget> elements = [];
     elements.add(SizedBox(height: 50,));
     elements.add(TextField(
-      onChanged: (text) {
-        email = text;
-      },
+    controller: textCon,
       obscureText: false,
       decoration: const InputDecoration(
           border: OutlineInputBorder(), labelText: "Email"),
@@ -28,9 +27,7 @@ class LoginForm extends StatelessWidget {
         obscureText: true,
         decoration: const InputDecoration(
             border: OutlineInputBorder(), labelText: "Passwort"),
-        onChanged: (text) {
-          password = text;
-        },
+          controller: passCon,
       ),
     ));
 
@@ -45,7 +42,7 @@ class LoginForm extends StatelessWidget {
                 context: context,
                 builder: (BuildContext context) => LoadingDialog());
 
-            final user = await _authent.login(email, password);
+            final user = await _authent.login(textCon.text, passCon.text);
             Navigator.pop(context); //pop dialog
             if (user.runtimeType != UserCredential) {
               showAlertDialog(context, user);

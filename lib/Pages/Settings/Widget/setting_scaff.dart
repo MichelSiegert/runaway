@@ -21,8 +21,7 @@ class SettingScaffold extends StatelessWidget {
         body: Container(
           padding: const EdgeInsets.all(16),
           child: SizedBox.expand(
-              child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
+              child: ListView(
             children: [
               LoginLine(
                   dropdown: DropDownLanguage(settings[1]),
