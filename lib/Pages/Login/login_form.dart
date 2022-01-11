@@ -1,5 +1,4 @@
 import 'package:away/Logic/authentication.dart';
-import 'package:away/Logic/screen_size_calculator.dart';
 import 'package:away/Widgets/loading_animation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -16,22 +15,26 @@ class LoginForm extends StatelessWidget {
     final AuthService _authent = AuthService();
     final List<Widget> elements = [];
 
-    elements.add(SizedBox(
-        width: calculateWidth(0.6, context),
-        height: calculateHeight(0.1, context),
-        child: TextField(
-          controller: textCon,
-          obscureText: false,
-          decoration: const InputDecoration(
-              border: OutlineInputBorder(), labelText: "Email"),
-        )));
+    elements.add( Padding(
+      padding: const EdgeInsets.fromLTRB(0,4,0,4),
+      child: TextField(
+            controller: textCon,
+            obscureText: false,
+            decoration: const InputDecoration(
+                border: OutlineInputBorder(), labelText: "Email"),
+          ),
+    ),
+    );
 
     elements.add(
-      TextField(
-        obscureText: true,
-        decoration: const InputDecoration(
-            border: OutlineInputBorder(), labelText: "Passwort"),
-        controller: passCon,
+      Padding(
+        padding: const EdgeInsets.fromLTRB(0,4,0,4),
+        child: TextField(
+          obscureText: true,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(), labelText: "Passwort"),
+          controller: passCon,
+        ),
       ),
     );
 
@@ -53,6 +56,7 @@ class LoginForm extends StatelessWidget {
           }
         },
       ),
+      SizedBox(height: 32),
       ElevatedButton(
         style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
         child: const Text("login anonymously"),
