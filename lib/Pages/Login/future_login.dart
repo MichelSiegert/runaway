@@ -27,12 +27,12 @@ class FutureLogin extends StatelessWidget {
                     child: SplashScreen(
                       seconds: 14,
                       navigateAfterSeconds: const AfterSplash(),
-                      title: const Text('Willkommen bei Runaway',
+                      title:  Text('Willkommen bei Runaway',
                           textAlign: TextAlign.center,
                           style: TextStyle(
-                              fontWeight: FontWeight.bold, fontSize: 40.0)),
+                              fontWeight: FontWeight.bold, fontSize: MediaQuery.of(context).orientation == Orientation.portrait ? 40.0:20.0)),
                       image: Image.asset('lib/Images/regen_wolke.png'),
-                      photoSize: 150.0,
+                      photoSize: MediaQuery.of(context).orientation == Orientation.portrait?   150.0: 100,
                       backgroundColor: Colors.blueGrey[900],
                       loaderColor: Colors.blue,
                     )));

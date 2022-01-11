@@ -13,6 +13,7 @@ class LoginForm extends StatelessWidget {
     String email = "", password = "";
     final AuthService _authent = AuthService();
     final List<Widget> elements = [];
+    elements.add(SizedBox(height: 50,));
     elements.add(TextField(
       onChanged: (text) {
         email = text;
@@ -47,7 +48,7 @@ class LoginForm extends StatelessWidget {
             final user = await _authent.login(email, password);
             Navigator.pop(context); //pop dialog
             if (user.runtimeType != UserCredential) {
-              showAlertDialog(context);
+              showAlertDialog(context, user);
             } else {
               Navigator.pushNamed(context, "/menu");
             }
@@ -66,7 +67,7 @@ class LoginForm extends StatelessWidget {
             User? user = await _authent.signInAnon();
             Navigator.pop(context);
             if (user == null) {
-              showAlertDialog(context);
+              showAlertDialog(context, "Failed to sign in anon!");
             } else {
               Navigator.pushNamed(context, "/menu");
             }
@@ -88,7 +89,7 @@ class LoginForm extends StatelessWidget {
         onPressed: () async {
           _authent.signInWithGoogle().then((user) {
             if (user == null) {
-              showAlertDialog(context);
+              showAlertDialog(context, "failed to sign in with google!");
             } else {
               Navigator.pop(context);
               Navigator.pushNamed(context, "/menu");
@@ -103,16 +104,14 @@ class LoginForm extends StatelessWidget {
 
     return SizedBox.expand(
       child: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
+        child: ListView(
             children: elements),
       ),
     );
   }
 }
 
-showAlertDialog(BuildContext context) {
+showAlertDialog(BuildContext context, String text) {
   Widget okButton = TextButton(
     child: const Text("OK"),
     onPressed: () {
@@ -120,7 +119,7 @@ showAlertDialog(BuildContext context) {
     },
   );
   AlertDialog alert = AlertDialog(
-    title: const Text("Something went wrong!",
+    title: Text(text,
         style: TextStyle(color: Colors.red)),
     actions: [
       okButton,
