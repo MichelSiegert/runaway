@@ -9,12 +9,12 @@ class RegisterForm extends StatelessWidget {
   Widget build(BuildContext context) {
     TextEditingController textCon = TextEditingController();
     TextEditingController passCon = TextEditingController();
-    return SizedBox.expand(
-      child: Container(
-        padding: const EdgeInsets.all(10),
-        alignment: Alignment.center,
-        color: Colors.white,
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox.expand(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             TextField(
               onChanged: (text) {},
@@ -23,8 +23,8 @@ class RegisterForm extends StatelessWidget {
               decoration: const InputDecoration(
                   border: OutlineInputBorder(), labelText: "Email"),
             ),
+            SizedBox(height: 8,),
             Container(
-              padding: const EdgeInsets.all(10),
               child: TextField(
                 obscureText: true,
                 decoration: const InputDecoration(

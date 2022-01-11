@@ -1,4 +1,5 @@
 import 'package:away/Logic/authentication.dart';
+import 'package:away/Logic/screen_size_calculator.dart';
 import 'package:away/Widgets/loading_animation.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -10,85 +11,82 @@ class LoginForm extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    String email = "", password = "";
+    TextEditingController textCon = TextEditingController();
+    TextEditingController passCon = TextEditingController();
     final AuthService _authent = AuthService();
     final List<Widget> elements = [];
-    elements.add(TextField(
-      onChanged: (text) {
-        email = text;
-      },
-      obscureText: false,
-      decoration: const InputDecoration(
-          border: OutlineInputBorder(), labelText: "Email"),
-    ));
-    elements.add(Container(
-      padding: const EdgeInsets.all(10),
-      child: TextField(
-        obscureText: true,
-        decoration: const InputDecoration(
-            border: OutlineInputBorder(), labelText: "Passwort"),
-        onChanged: (text) {
-          password = text;
-        },
+
+    elements.add(
+      Padding(
+        padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+        child: TextField(
+          controller: textCon,
+          obscureText: false,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(), labelText: "Email"),
+        ),
       ),
-    ));
+    );
+
+    elements.add(
+      Padding(
+        padding: const EdgeInsets.fromLTRB(0, 4, 0, 4),
+        child: TextField(
+          obscureText: true,
+          decoration: const InputDecoration(
+              border: OutlineInputBorder(), labelText: "Passwort"),
+          controller: passCon,
+        ),
+      ),
+    );
 
     elements.add(Column(children: <Widget>[
-      Container(
-        padding: const EdgeInsets.all(10),
-        child: ElevatedButton(
-          style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-          child: const Text("login"),
-          onPressed: () async {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => LoadingDialog());
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+        child: const Text("login"),
+        onPressed: () async {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => LoadingDialog());
 
-            final user = await _authent.login(email, password);
-            Navigator.pop(context); //pop dialog
-            if (user.runtimeType != UserCredential) {
-              showAlertDialog(context);
-            } else {
-              Navigator.pushNamed(context, "/menu");
-            }
-          },
-        ),
+          final user = await _authent.login(textCon.text, passCon.text);
+          Navigator.pop(context); //pop dialog
+          if (user.runtimeType != UserCredential) {
+            showAlertDialog(context, user);
+          } else {
+            Navigator.pushNamed(context, "/menu");
+          }
+        },
       ),
-      Container(
-        padding: const EdgeInsets.all(10),
-        child: ElevatedButton(
+      SizedBox(height: 32),
+      ElevatedButton(
+        style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
+        child: const Text("login anonymously"),
+        onPressed: () async {
+          showDialog(
+              context: context,
+              builder: (BuildContext context) => LoadingDialog());
+          User? user = await _authent.signInAnon();
+          Navigator.pop(context);
+          if (user == null) {
+            showAlertDialog(context, "Failed to sign in anon!");
+          } else {
+            Navigator.pushNamed(context, "/menu");
+          }
+        },
+      ),
+      ElevatedButton(
+          child: const Text("No Account? Register here!"),
           style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-          child: const Text("login anonymously"),
-          onPressed: () async {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => LoadingDialog());
-            User? user = await _authent.signInAnon();
-            Navigator.pop(context);
-            if (user == null) {
-              showAlertDialog(context);
-            } else {
-              Navigator.pushNamed(context, "/menu");
-            }
-          },
-        ),
-      ),
-      Container(
-        padding: const EdgeInsets.all(10),
-        child: ElevatedButton(
-            child: const Text("No Account? Register here!"),
-            style: ElevatedButton.styleFrom(primary: Colors.blueGrey[900]),
-            onPressed: () {
-              Navigator.pushNamed(context, "/register");
-            }),
-      ),
+          onPressed: () {
+            Navigator.pushNamed(context, "/register");
+          }),
       SignInButton(
         Buttons.GoogleDark,
-        padding: const EdgeInsets.all(10),
         onPressed: () async {
           _authent.signInWithGoogle().then((user) {
             if (user == null) {
-              showAlertDialog(context);
+              showAlertDialog(context, "failed to sign in with google!");
             } else {
               Navigator.pop(context);
               Navigator.pushNamed(context, "/menu");
@@ -101,18 +99,21 @@ class LoginForm extends StatelessWidget {
       ),
     ]));
 
-    return SizedBox.expand(
-      child: Center(
-        child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: elements),
+    return Center(
+      child: SizedBox(
+        width: calculateWidth(1, context),
+        height: calculateHeight(0.7, context),
+        child: Padding(
+          padding: EdgeInsets.all(16),
+          child: ListView(children: elements,
+          ),
+        ),
       ),
     );
   }
 }
 
-showAlertDialog(BuildContext context) {
+showAlertDialog(BuildContext context, String text) {
   Widget okButton = TextButton(
     child: const Text("OK"),
     onPressed: () {
@@ -120,8 +121,7 @@ showAlertDialog(BuildContext context) {
     },
   );
   AlertDialog alert = AlertDialog(
-    title: const Text("Something went wrong!",
-        style: TextStyle(color: Colors.red)),
+    title: Text(text, style: TextStyle(color: Colors.red)),
     actions: [
       okButton,
     ],

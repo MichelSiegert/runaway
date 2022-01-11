@@ -12,5 +12,5 @@ class InformationPlace {
       required this.lat,
       required this.lon,
       required this.weather,
-      required this.temp});
+      required this.temp,});
 }
