@@ -32,7 +32,7 @@ class _WeatherCardState extends State<WeatherCard> {
               return IconButton(
                 onPressed: () async {
                   tapWeatherCardToDataBase(widget.informationPlace.place, widget.informationPlace.lat, widget.informationPlace.lon);
-                  await Future.delayed(Duration(milliseconds: 70));
+                  await Future.delayed(Duration(milliseconds: 100));
                   setState(() {
                     isFavorite = !isFavorite;
                   });
