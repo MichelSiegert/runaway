@@ -32,8 +32,8 @@ class AuthService {
       } else if (e.code == "wrong-password") {
         return "Wrong password!";
       }
+      return e.code;
     }
-    return null;
   }
 
   Future register(final String email, final String password) async {

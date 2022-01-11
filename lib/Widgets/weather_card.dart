@@ -25,13 +25,13 @@ class _WeatherCardState extends State<WeatherCard> {
     return ListTile(
         leading: FutureBuilder(
           future: isThisPlaceAFavoriteOfUser(
-              widget.informationPlace.place),
+              widget.informationPlace.place, widget.informationPlace.lat, widget.informationPlace.lon),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               isFavorite = snapshot.data as bool;
               return IconButton(
                 onPressed: () async {
-                  tapWeatherCardToDataBase(widget.informationPlace.place);
+                  tapWeatherCardToDataBase(widget.informationPlace.place, widget.informationPlace.lat, widget.informationPlace.lon);
                   await Future.delayed(Duration(milliseconds: 70));
                   setState(() {
                     isFavorite = !isFavorite;
